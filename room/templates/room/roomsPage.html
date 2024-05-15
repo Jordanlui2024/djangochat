@@ -1,0 +1,66 @@
+{% extends "core/base.html" %} 
+{% load static %}
+{% block title %}room{% endblock %} 
+{% block style %}
+<style>
+   body {
+    font-family:"Exo 2", sans-serif;
+    background: url("{% static 'images/bg.jpg' %}") no-repeat fixed;
+    background-size:cover;
+    background-position: center;
+   }
+ </style>
+{% endblock  %}
+{% block content %}
+<div class="content">
+<div class="roomlist">
+ 
+{% for room in rooms %}
+<div class="card cardroom" style="width: 18rem;">
+  <div class="card-body">
+    <div style="display:flex; flex-direction:row; align-items:center">  
+      <img src="{% static 'images/' %}{{room.image}}" alt="..." style="margin-right:10px" width="45" height="45"> 
+      <h5 class="card-title" style=" font-weight:bold; font-size:22px">{{room.name}}</h5>
+    </div>  
+      <p class="card-text" id="{{room.slug}}">Joiner: 0</p>
+      <a href="{% url 'chatroomPage' room.slug %}" class="btn btn-primary" style="width:100%; background-color:black; border-color:gray">Join</a>
+    </div>
+  </div>
+{% endfor %} 
+</div>
+</div>
+{% endblock %}
+
+{% block script %}
+{{request.user.username|json_script:"json-username"}}
+<script>
+ const userName = JSON.parse(document.getElementById('json-username').textContent);
+ 
+ $(function(){
+    $(".cardroom").slideDown("slow");
+
+    const rooms = new WebSocket(
+      'wss://'
+      + window.location.host
+      + '/ws/rooms_count/'
+      + userName
+      + '/'
+    )
+
+    rooms.onclose = function(e){
+      console.log("onclose")
+    }
+
+    rooms.onmessage = function(e){
+      const data = JSON.parse(e.data);
+      //console.log(JSON.stringify(data.count))
+      if(Object.keys(data).length > 0){
+        for(let key in data.count){
+          
+          $("#"+key).html("Joiner:"+data.count[key])
+        }
+      }
+    }
+ });
+</script>   
+{% endblock  %}

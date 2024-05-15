@@ -1,0 +1,71 @@
+{% extends "core/base.html" %} 
+{% load static %}
+{% block title %}home{% endblock %}
+{% block style %}
+<style>
+   body {
+     font-family:"Exo 2", sans-serif;
+     background: url("{% static 'images/bg3.jpg' %}") no-repeat fixed;
+     background-size:60%;
+     background-position: right;
+   }
+ </style>
+{% endblock  %}
+
+
+{% block content %}
+<div class="content">
+<div class="welcomecontext">
+   <div class="welcometitle">WELCOME TO CODECHAT</div>
+   <div class="welcomepage">
+      <div class="card welcomebox">
+         <p class="wtitle">CodeChat </p>
+         CodeChat is your go-to platform for real-time programming discussions. 
+         Whether you're debugging a tricky piece of code, exploring new technologies, 
+         or brainstorming project ideas, DjangoChat is the place to be.
+      </div>
+      <div class="card welcomebox">
+      <p class="wtitle">Join a Room: <p>
+         Browse through our various chat rooms each dedicated 
+         to a specific programming language or technology. 
+         Find the one that suits your needs and join the conversation!
+      </div>
+      <div class="card welcomebox">
+         <p class="wtitle">Start a Discussion:</p>
+          Got a question or an interesting topic to discuss? Don't hesitate to start a new thread. Our community is here to help and learn from each other.
+
+      </div>
+      <div class="card welcomebox">
+         <p class="wtitle"> Share Your Knowledge:</p>
+         See a question you can answer? Don't hold back! Your insights could be exactly what someone else needs.
+      </div>
+      <div class="card welcomebox">
+         <p class="wtitle"> Keep Learning:</p>
+         The world of coding is vast and ever-evolving. Stay curious, keep asking questions, and never stop learning.
+      </div>   
+      <div class="card welcomebox">
+         <p class="wtitle"> Stay Respectful:</p>
+         Remember, every coder is at a different point in their coding journey. Let's maintain a supportive and respectful environment for all.
+      </div>   
+    </div>
+   <div></div>
+</div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+ $(function(){
+   $(".welcometitle").show("slow", "swing");
+   $(".welcomebox").fadeIn("slow");
+
+   /*$(".welcomebox").first().fadeIn("fast", function showNext(){
+      $(this).next(".welcomebox").fadeIn("fast", showNext);
+   });*/
+});
+</script>
+
+{% endblock  %}
+
+
+ 
