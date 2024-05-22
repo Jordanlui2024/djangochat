@@ -5,8 +5,7 @@
 <style>
    body {
      font-family:"Exo 2", sans-serif;
-     background: url("{% static 'images/rooms.png' %}") no-repeat fixed;
-     background-position: center;
+     {% comment %} background: linear-gradient(180deg, rgba(2,0,.6,1) 0%, rgba(9,9,121,1) 40%,  rgb(13, 40, 163) 100%);  {% endcomment %}
    }
  </style>
 {% endblock  %}
@@ -20,7 +19,24 @@
     </div>
     <div class="chatcontent" id="chat-messages">
       {% for m in messages %}
-        <b>{{m.user.username}} : </b>{{m.content}}</br>
+         {% if request.user.username == m.user.username %}
+        <div class="iam_say">
+          <div class="btn bubble">
+            {{m.content}}<br/>
+            <span>{{m.date_added|date:"H:i"}}</span>
+          </div>  
+        </div>
+         {% else %}
+
+        <div class="user_say">
+          <div class="btn ububble">
+          <span>{{m.user.username}}:</span>
+           {{m.content}}
+          <span>{{m.date_added|date:"H:i"}}</span>
+          </div>
+        </div>
+
+         {% endif %}
       {% endfor %}   
     </div> 
     <form message="post" action=".">
@@ -34,15 +50,52 @@
 </div>
 {% endblock %}
 
+{% block animate %}
+
+<canvas id="matrix" />
+
+
+{% endblock  %}
+
 {% block script %}
 {{room.slug|json_script:"json-roomname"}}
 {{request.user.username|json_script:"json-username"}}
 <script>
+  var q = document.getElementById("matrix"),
+  s=window.screen,
+  w=q.width=window.innerWidth,
+  h=q.height=window.innerHeight,
+  p=Array(256).join(1).split(""),
+  c=q.getContext('2d'),
+  m=Math;
+
+  setInterval(function(){
+    c.fillStyle='rgba(0,0,0,0.05)';
+    c.fillRect(0,0,w,h);
+    c.fillStyle='rgba(0,255,0,0.8)';
+    p=p.map(function(v,i){
+      r=m.random();
+      var str= String.fromCharCode(m.floor(2720+r*33));
+      c.fillText(str, i*10,v);
+      v+=10;
+      var ret = v>768+r*1e4?0:v
+      return ret;
+    });
+  },100);
+  
+  
+  
+  
+  
   const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
   const userName = JSON.parse(document.getElementById('json-username').textContent);
-  
+  console.log(location.protocol)
+  var ws = "ws://";
+  if(location.protocol == 'https:'){
+    ws = "wss://"
+  }
   const chatSocket = new WebSocket(
-    'wss://'
+    ws
     + window.location.host
     + '/ws/'
     + roomName
@@ -58,9 +111,13 @@
   
     chatSocket.onmessage = function(e) {
       const data = JSON.parse(e.data);
-      console.log("data................", JSON.stringify(data));
       if (data.message) {
-          $('#chat-messages').append('<b>' + data.username + '</b> : ' + data.message + '<br>');  
+        if(userName == data.username){
+          $('#chat-messages').append('<div class="iam_say"><div class="btn bubble">'+ data.message +'<br/><span>'+ data.date +'</span></div></div>');  
+        }else{
+          $('#chat-messages').append('<div class="user_say"><div class="btn ububble"><span>'+ data.username +':</span>'+data.message+'<span>'+data.date+'</span></div></div>');  
+        
+        }
       }
       if (data.joiners){
             console.log("joiners", JSON.stringify(data.joiners))
@@ -74,14 +131,11 @@
       }
   
       scrollToBottom();
-  };
+    };
   
 
   
   $(function(){
-
-
-
 
     $('#chat-message-input').focus();
     $('#chat-message-input').on('keyup', function(e) {

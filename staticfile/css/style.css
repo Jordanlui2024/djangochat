@@ -30,7 +30,7 @@
 .wtitle{font-size: 22px; font-weight: bold; text-decoration: underline;}    
 .codelogo{width:45px; height:45px; margin-right: 10px;}
 .chatcontainer{height:100vh; display:flex; flex-direction:column; justify-content: start; align-items: center; }
-.chatroom{position: relative; width:600px;  background-color: whitesmoke; height: 100%; margin-top: 70px; margin-bottom: 10px; border:none}
+.chatroom{position: relative; max-width: 600px; width:90%;  background-color: whitesmoke; height: 100%; margin-top: 70px; margin-bottom: 10px; border:none}
 .topic{
   background-color: rgb(231, 219, 219) ;
   border-radius: 5px 5px 0px 0px;
@@ -47,3 +47,9 @@
 .welcome-user{position: absolute; top: 70px; right:13px;}
 .username{background-color: rgb(63, 63, 63); color:white; border-radius: 5px; padding: 8px 15px 8px 15px; margin-bottom: 5px;}
 #joiners{color:white; margin-top: 10px;}
+.user_say{display: flex; flex-direction: column; justify-content: center; align-items: start; width: 100%; margin-bottom: 15px; }
+.iam_say{display: flex; flex-direction: column; justify-content: center; align-items: end; width: 100%; margin-bottom: 15px;}
+.bubble{border-radius: 18px; display: flex; flex-direction: column; justify-content: center; align-items: end; background-color: rgb(68, 68, 235); color: white;}
+.bubble span{font-size: 12px;}
+.ububble{border-radius: 18px; display: flex; flex-direction: column; justify-content: center; align-items:start; background-color: rgb(247, 238, 238);}
+.ububble span{font-size: 12px;}

@@ -4,32 +4,93 @@
 {% block style %}
 <style>
    body {
-    font-family:"Exo 2", sans-serif;
-    background: url("{% static 'images/bg.jpg' %}") no-repeat fixed;
-    background-size:cover;
-    background-position: center;
+    font-family:"Exo 2", sans-serif; 
+    background: linear-gradient(180deg, rgba(2,0,.6,1) 0%, rgba(9,9,121,1) 40%,  rgb(13, 40, 163) 100%); 
    }
+  
  </style>
 {% endblock  %}
 {% block content %}
 <div class="content">
-<div class="roomlist">
- 
+  <div class="toptitle">Video Tutorials</div>  
+<div class="roomlist"> 
 {% for room in rooms %}
-<div class="card cardroom" style="width: 18rem;">
-  <div class="card-body">
-    <div style="display:flex; flex-direction:row; align-items:center">  
-      <img src="{% static 'images/' %}{{room.image}}" alt="..." style="margin-right:10px" width="45" height="45"> 
-      <h5 class="card-title" style=" font-weight:bold; font-size:22px">{{room.name}}</h5>
-    </div>  
-      <p class="card-text" id="{{room.slug}}">Joiner: 0</p>
-      <a href="{% url 'chatroomPage' room.slug %}" class="btn btn-primary" style="width:100%; background-color:black; border-color:gray">Join</a>
-    </div>
-  </div>
+<div class="box">
+  <span>
+    <div class="title">  
+      <img src="{% static 'images/' %}{{room.image}}" width="45" height="45" style="margin-right:10px"> 
+      <div>{{room.name}}</div>
+    </div> 
+
+    <p class="box-text" id="{{room.slug}}">Joiner: 0</p>
+    <a href="{% url 'chatroomPage' room.slug %}" class="btn blackcolor" style="width:100%">Join</a>
+  </span>
+</div> 
+
 {% endfor %} 
 </div>
 </div>
 {% endblock %}
+{% block animate%}
+<div class="bubbles">
+  <span style="--i:11;"></span>
+  <span style="--i:12;"></span>
+  <span style="--i:24;"></span>
+  <span style="--i:10;"></span>
+  <span style="--i:14;"></span>
+  <span style="--i:23;"></span>
+  <span style="--i:18;"></span>
+  <span style="--i:16;"></span>
+  <span style="--i:18;"></span>
+  <span style="--i:20;"></span>
+  <span style="--i:22;"></span>
+  <span style="--i:25;"></span>
+  <span style="--i:17;"></span>
+  <span style="--i:21;"></span>
+  <span style="--i:28;"></span>
+  <span style="--i:30;"></span>
+  <span style="--i:15;"></span>
+  <span style="--i:16;"></span>
+  <span style="--i:9;"></span>
+  <span style="--i:13;"></span>
+  <span style="--i:16;"></span>
+  <span style="--i:26;"></span>
+  <span style="--i:29;"></span>
+  <span style="--i:8;"></span>
+
+
+  <span style="--i:11;"></span>
+  <span style="--i:12;"></span>
+  <span style="--i:24;"></span>
+  <span style="--i:10;"></span>
+  <span style="--i:14;"></span>
+  <span style="--i:23;"></span>
+  <span style="--i:18;"></span>
+  <span style="--i:16;"></span>
+  <span style="--i:18;"></span>
+  <span style="--i:20;"></span>
+  <span style="--i:22;"></span>
+  <span style="--i:25;"></span>
+  <span style="--i:17;"></span>
+  <span style="--i:21;"></span>
+  <span style="--i:28;"></span>
+  <span style="--i:30;"></span>
+  <span style="--i:15;"></span>
+  <span style="--i:16;"></span>
+  <span style="--i:9;"></span>
+  <span style="--i:13;"></span>
+  <span style="--i:16;"></span>
+  <span style="--i:26;"></span>
+  <span style="--i:29;"></span>
+  <span style="--i:8;"></span>
+  <span style="--i:1;"></span>
+  <span style="--i:2;"></span>
+  <span style="--i:30;"></span>
+  <span style="--i:23;"></span>
+  <span style="--i:5;"></span>
+</div>
+{% endblock %}
+
 
 {% block script %}
 {{request.user.username|json_script:"json-username"}}
@@ -37,10 +98,21 @@
  const userName = JSON.parse(document.getElementById('json-username').textContent);
  
  $(function(){
+
+    $(".box").on("mouseenter",function(){
+      $(this).addClass("showcard")
+    }).on("mouseleave", function(){
+      $(this).removeClass("showcard")
+    })
+
     $(".cardroom").slideDown("slow");
 
+    var ws = "ws://";
+    if(location.protocol == 'https:'){
+      ws = "wss://";
+    }
     const rooms = new WebSocket(
-      'wss://'
+      ws
       + window.location.host
       + '/ws/rooms_count/'
       + userName

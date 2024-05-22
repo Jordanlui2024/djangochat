@@ -1,6 +1,11 @@
 from pathlib import Path
 from telnetlib import LOGOUT
 import os
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,11 +18,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-k&vj#ecl&972pvx=(&-1+a80m!8c$0_gw8z3($@^zle%$55h2@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.9','web.dannyko.synology.me','192.168.1.3']
+# if env("DEBUG") is False:
+DEBUG = False
 
-CSRF_TRUSTED_ORIGINS = ['https://web.dannyko.synology.me']
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+
+CTO = env("CSRF_TRUSTED_ORIGINS", default=None)
+
+if CTO is not None:
+   CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")
 
 
 LOGOUT_REDIRECT_URL="/"
@@ -37,6 +47,10 @@ INSTALLED_APPS = [
     'bootstrap5',
     'core',
     'room',
+    'contactus',
+    'video',
+    'forum',
+    'course',
 ]
 
 MIDDLEWARE = [
@@ -113,7 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Hong_Kong'
 
 USE_I18N = True
 
@@ -124,16 +138,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfile')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-]
+     ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfile') 
+# if DEBUG:
+# else:
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+static_storage = env("STATICFILES_STORAGE", default=None)
+
+if static_storage is not None:
+   STATICFILES_STORAGE = env("STATICFILES_STORAGE")
