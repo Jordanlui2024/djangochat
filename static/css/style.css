@@ -1,4 +1,7 @@
-body{min-height:100vh}
+body{min-height:100vh;  background-attachment: fixed;}
+body > .skiptranslate {
+  display: none;
+} 
 .content{ position: relative; padding-top: 130px;}
 .toptitle{margin-bottom: 20px; width: 100%; text-align: center; font-size: 26px; font-weight: bold; text-decoration: underline; color: whitesmoke;}
 /* navigation bar css */
@@ -26,6 +29,16 @@ body{min-height:100vh}
   right: 20px;
   color:yellow
   }
+
+  .google{
+    position: absolute;
+    color: whitesmoke; 
+    height: 30px; font-size: 18px; 
+    font-weight: bold; 
+    top: 120px;
+    right: 20px;
+    
+    }
 .welcometitle{font-weight: bold; color:rgb(255, 255, 255); text-align:left; }
 .welcometitle span{color:rgb(255, 120, 10)}
 .welcomebox{display:none; max-width: 400px; padding:10px; background-color:rgb(63, 63, 63, 0.9); color:white; margin-bottom: 20px;}
@@ -57,11 +70,11 @@ body{min-height:100vh}
   font-size:x-large;
   display: flex; 
   flex-direction: row; 
-  justify-content: center; 
+  justify-content: space-between; 
   align-items: center;}
 .chatbar{border-radius: 0px 0px 5px 5px; padding: 10px; background-color: rgb(184, 184, 184);  position: absolute; width: 100%; bottom:0px}  
 .chatcontent{max-height:700px; margin-bottom:70px; padding: 20px; overflow-y:auto; }
-.welcome-user{position: absolute; top: 70px; right:13px;}
+.welcome-user{position: absolute; top: 120px; right:13px;}
 .username{background-color: rgb(63, 63, 63); color:white; border-radius: 5px; padding: 8px 15px 8px 15px; margin-bottom: 5px;}
 #joiners{color:white;}
 .user_say{display: flex; flex-direction: column; justify-content: center; align-items: start; width: 100%; margin-bottom: 15px; }
@@ -72,9 +85,7 @@ body{min-height:100vh}
 .ububble span{font-size: 12px;}
 #chat-message-input:focus {
   outline: none;
-  color: blue;
   border: 1px solid black;
-  text-decoration: underline;
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.5);
   border-radius: 0.5rem;
 }
@@ -97,7 +108,7 @@ body{min-height:100vh}
 
 .button{
   height:40px;
-  width:140px;
+  width:130px;
   border-radius: 50px;
 }
 
@@ -127,13 +138,13 @@ body{min-height:100vh}
 
 .button a, .button button{
   height: 30px;
-  width: 130px;
+  width: 120px;
   border-radius: 50px;
 }
 
 .outer span{
   height: 40px;
-  width: 140px;
+  width: 130px;
   background: inherit;
 }
 
@@ -307,6 +318,7 @@ body{min-height:100vh}
   font-size: 18px;
   border:1px solid white;
 }
+
 .box a:hover{
   color:#ff7df4
 }
@@ -400,6 +412,7 @@ body{min-height:100vh}
   width:350px;
   border-radius: 10px;
   padding: 5px;
+  margin-bottom: 20px;
 }
 
 .videocontent{
@@ -407,6 +420,7 @@ body{min-height:100vh}
   display: flex;
   flex-direction: row;
   justify-content:space-around;
+  flex-wrap: wrap;
   align-items: center;
 }
 

@@ -4,151 +4,183 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     {% load static %}
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logo.ico' %}">
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="{% static 'images/logo.ico' %}"
+    />
     <title>{% block title %}home{% endblock %}</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=platypi">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo 2">
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-    
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=platypi"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Exo 2"
+    />
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
     {% block style %}{% endblock %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script type="text/javascript" src="{% static 'js/jquery-3.7.1.min.js' %}"></script> 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
- </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-custom">
-        <div class="container-fluid">
-        <div style="display:flex; flex-direction:flow; margin-right:100px ">
-          <div style="border-radius:10px; width:40px; height:40px">
-            <image src="{% static 'images/logo.png' %}" style="width:40px; height:40px"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script
+      type="text/javascript"
+      src="{% static 'js/jquery-3.7.1.min.js' %}"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+  </head>
+  <body class="notranslate">
+    <nav class="navbar navbar-expand-xl navbar-custom">
+      <div class="container-fluid">
+        <div style="display: flex; flex-direction: flow; margin-right: 100px">
+          <div style="border-radius: 10px; width: 40px; height: 40px">
+            <image
+              src="{% static 'images/logo.png' %}"
+              style="width: 40px; height: 40px"
+            />
           </div>
           <a class="navbar-brand-custom" href="/">CODECHAT</a>
         </div>
-        
-        <button class="navbar-toggler"  data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="material-icons" style="color:white">dehaze</i>
+
+        <button
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="material-icons" style="color: white">dehaze</i>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <div class="menu_item">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <div class="outer button">
-                    <a href="{% url 'homePage' %}">Home</a>
-                    <span></span>
-                    <span></span>
-                    </div>
-                </li>
-                {% if request.user.is_authenticated %}       
-                <li class="navbar-item">
-                  <div class="outer button">
-                    <a href="{% url 'roomsPage' %}">Chat Room</a>
-                    <span></span>
-                    <span></span>
-                   </div>
-                </li>
-                <li class="nav-item">
-                  <div class="outer button">
-                    <a href="{% url 'homePage' %}">Forum</a>
-                    <span></span>
-                    <span></span>
-                    </div>
-                </li>
-                {% endif %}
-                <li class="nav-item">
-                  <div class="outer button" style="width:160px">
-                    <a href="{% url 'videoListPage' %}" style="width:150px">Video Tutorials</a>
-                    <span style="width: 160px;"></span>
-                    <span style="width: 160px;"></span>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <div class="outer button">
-                    <a href="{% url 'homePage' %}">Course</a>
-                    <span></span>
-                    <span></span>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <div class="outer button">
-                    <a href="{% url 'contactusPage' %}">Contact</a>
-                    <span></span>
-                    <span></span>
-                    </div>
-                </li>
-                <li class="nav-item">
-                  <div class="outer button">
-                    <a href="{% url 'homePage' %}">About</a>
-                    <span></span>
-                    <span></span>
-                    </div>
-                </li>
-
-                {% if request.user.is_authenticated %}             
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <div class="outer button">
+                  <a href="{% url 'homePage' %}">Home</a>
+                  <span></span>
+                  <span></span>
+                </div>
+              </li>
+              {% if request.user.is_authenticated %}
+              <li class="navbar-item">
+                <div class="outer button">
+                  <a href="{% url 'roomsPage' %}">Chat Room</a>
+                  <span></span>
+                  <span></span>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="outer button">
+                  <a href="{% url 'homePage' %}">Forum</a>
+                  <span></span>
+                  <span></span>
+                </div>
+              </li>
+              {% endif %}
+              <li class="nav-item">
+                <div class="outer button" style="width: 160px">
+                  <a href="{% url 'videoListPage' %}" style="width: 150px"
+                    >Video Tutorials</a
+                  >
+                  <span style="width: 160px"></span>
+                  <span style="width: 160px"></span>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="outer button">
+                  <a href="{% url 'homePage' %}">Course</a>
+                  <span></span>
+                  <span></span>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="outer button">
+                  <a href="{% url 'contactusPage' %}">Contact</a>
+                  <span></span>
+                  <span></span>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="outer button">
+                  <a href="{% url 'homePage' %}">About</a>
+                  <span></span>
+                  <span></span>
+                </div>
+              </li>
+            
+              {% if request.user.is_authenticated %}
               
-                <li class='nav-item'>
-                <form method="POST" action="{% url 'logoutPage' %}" >
-                   {% csrf_token %}
-                   <div class="outer button">
+              <li class="nav-item">
+                <form method="POST" action="{% url 'logoutPage' %}">
+                  {% csrf_token %}
+                  <div class="outer button">
                     <button>Logout</button>
                     <span></span>
                     <span></span>
-                   </div>
+                  </div>
                 </form>
-                </li>
-
-
-               {% else %}
-               <li>
-               <div class="outer button">
-                <a href="{% url 'loginPage' %}" >Login</a>
-                <span></span>
-                <span></span>
+              </li>
+              
+              {% else %}
+              <li>
+                <div class="outer button">
+                  <a href="{% url 'loginPage' %}">Login</a>
+                  <span></span>
+                  <span></span>
                 </div>
               </li>
               <li>
-
                 <div class="outer button">
-                <a href="{% url 'signupPage' %}" >Signup</a>
-                <span></span>
-                <span></span>
+                  <a href="{% url 'signupPage' %}">Signup</a>
+                  <span></span>
+                  <span></span>
                 </div>
               </li>
-               {% comment %} <a href="{% url 'loginPage' %}" class="btn btn-primary" style="margin-right:20px">Login</a>
-               <a href="{% url 'signupPage' %}" class="btn btn-primary">Signup</a> {% endcomment %}
-               {% endif %}
-              </ul> 
-
+              
+              {% endif %}
+             
+            </ul>
           </div>
-        </div>        
         </div>
+      </div>
     </nav>
-    
+
     <div class="container">
+    
       {% if request.user.is_authenticated %}
       <div class="welcome">Welcome : {{request.user.username | title}}</div>
       <div class="welcome-user">
         <span id="joiners"></span>
       </div>
-      {% endif %}
+      {% endif %} 
       {% block content %}{% endblock %}
     </div>
-    
+
     {% block animate %}{% endblock %}
 
     <div class="line line-1">
-      <div class="wave wave1" style="background-image:url({% static 'images/1.png' %})"></div>
-    </div>  
+      <div
+        class="wave wave1"
+        style="background-image: url({%static 'images/1.png'%})"
+      ></div>
+    </div>
     <div class="line line-2">
-      <div class="wave wave2" style="background-image:url({% static 'images/2.png' %})"></div>
-    </div>  
+      <div
+        class="wave wave2"
+        style="background-image: url({%static 'images/2.png'%})"
+      ></div>
+    </div>
     <div class="line line-3">
-      <div class="wave wave3" style="background-image:url({% static 'images/3.png' %})"></div>
-    </div>  
-
-</body>
-{% block script %}{% endblock  %}
+      <div
+        class="wave wave3"
+        style="background-image: url({%static 'images/3.png'%})"
+      ></div>
+    </div>
+  </body>
+ 
+  {% block script %}{% endblock %}
 </html>

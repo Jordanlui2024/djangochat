@@ -5,17 +5,22 @@
 <style>
    body {
      font-family:"Exo 2", sans-serif;
-     {% comment %} background: linear-gradient(180deg, rgba(2,0,.6,1) 0%, rgba(9,9,121,1) 40%,  rgb(13, 40, 163) 100%);  {% endcomment %}
+     background-image: url("{% static 'images/home.png' %}"), linear-gradient(180deg, rgba(2,0,.6,1) 0%, rgba(9,9,121,1) 40%,  rgb(13, 40, 163) 100%);
    }
  </style>
 {% endblock  %}
 {% block content %}
 <div class="chatcontainer">
   
-  <div class="card chatroom">
+  <div class="card chatroom translate">
     <div class="topic" >
+      <div>
       <image src="{% static 'images/'  %}{{room.image}}" style="width:45px; margin-right:10px"/>
       {{room.name}}
+      </div>
+      
+      <div id="google_translate_element"></div>
+       
     </div>
     <div class="chatcontent" id="chat-messages">
       {% for m in messages %}
@@ -60,8 +65,22 @@
 {% block script %}
 {{room.slug|json_script:"json-roomname"}}
 {{request.user.username|json_script:"json-username"}}
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en, zh-CN', 
+       includedLanguages:'en,zh-CN,zh-TW,ja,ko',
+      layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL}, 
+      'google_translate_element');
+  }
+  </script>
+
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 <script>
-  var q = document.getElementById("matrix"),
+  {% comment %} var q = document.getElementById("matrix"),
   s=window.screen,
   w=q.width=window.innerWidth,
   h=q.height=window.innerHeight,
@@ -81,11 +100,7 @@
       var ret = v>768+r*1e4?0:v
       return ret;
     });
-  },100);
-  
-  
-  
-  
+  },100); {% endcomment %}
   
   const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
   const userName = JSON.parse(document.getElementById('json-username').textContent);

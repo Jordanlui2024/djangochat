@@ -32,7 +32,7 @@
 </div>
 {% endblock %}
 {% block animate%}
-<div class="bubbles">
+<div class="bubbles" id="bubblespan">
   <span style="--i:11;"></span>
   <span style="--i:12;"></span>
   <span style="--i:24;"></span>
@@ -97,12 +97,33 @@
 <script>
  const userName = JSON.parse(document.getElementById('json-username').textContent);
  
+ function screenResize(){
+    console.log($(window).width());
+    winwidth = $(window).width();
+
+  
+    if(1175 > winwidth){
+      if($("#bubblespan").hasClass("bubbles")){
+        console.log("remove class");
+        $("#bubblespan").removeClass("bubbles");
+      }
+    }else{
+      if(!$("#bubblespan").hasClass("bubbles")){
+        console.log("add class");
+        $("#bubblespan").addClass("bubbles");
+      }
+    } 
+ }
+
+
  $(function(){
+    screenResize();
+    $(window).resize(screenResize);
 
     $(".box").on("mouseenter",function(){
-      $(this).addClass("showcard")
+      $(this).addClass("showcard");
     }).on("mouseleave", function(){
-      $(this).removeClass("showcard")
+      $(this).removeClass("showcard");
     })
 
     $(".cardroom").slideDown("slow");
@@ -120,7 +141,7 @@
     )
 
     rooms.onclose = function(e){
-      console.log("onclose")
+      console.log("onclose");
     }
 
     rooms.onmessage = function(e){
@@ -129,7 +150,7 @@
       if(Object.keys(data).length > 0){
         for(let key in data.count){
           
-          $("#"+key).html("Joiner:"+data.count[key])
+          $("#"+key).html("Joiner:"+data.count[key]);
         }
       }
     }
