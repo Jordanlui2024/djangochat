@@ -72,7 +72,7 @@ body > .skiptranslate {
   justify-content: space-between; 
   align-items: center;}
 .chatbar{border-radius: 0px 0px 5px 5px; padding: 10px; background-color: rgb(184, 184, 184);  position: absolute; width: 100%; bottom:0px}  
-.chatcontent{ padding: 20px; overflow-y:auto; height: 97%;}
+.chatcontent{ padding: 20px; overflow-y:auto; height: 95%; margin-bottom: 50px;}
 .welcome-user{position: absolute; top: 120px; right:13px;}
 .username{background-color: rgb(63, 63, 63); color:white; border-radius: 5px; padding: 8px 15px 8px 15px; margin-bottom: 5px;}
 #joiners{color:white;}
