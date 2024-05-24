@@ -12,7 +12,7 @@
 {% endblock  %}
 {% block content %}
 <div class="content">
-  <div class="toptitle">Video Tutorials</div>  
+  <div class="toptitle">Chat Room</div>  
 <div class="roomlist"> 
 {% for room in rooms %}
 <div class="box">
@@ -94,7 +94,7 @@
 
 {% block script %}
 {{request.user.username|json_script:"json-username"}}
-<script>
+<script type="text/javascript">
  const userName = JSON.parse(document.getElementById('json-username').textContent);
  
  function screenResize(){

@@ -2,15 +2,16 @@ body{min-height:100vh;  background-attachment: fixed;}
 body > .skiptranslate {
   display: none;
 } 
-.content{ position: relative; padding-top: 130px;}
+.content{ position: relative; padding-top: 100px;}
 .toptitle{margin-bottom: 20px; width: 100%; text-align: center; font-size: 26px; font-weight: bold; text-decoration: underline; color: whitesmoke;}
 /* navigation bar css */
 .navbar-custom{background-color:rgba(2,0,.6,1);; position: fixed; top:0; width: 100%; z-index: 100;}
 .navbar-brand-custom{font-weight:bold; color:white; font-size:25px; padding-left: 20px; text-decoration: none;}
 .navbar-brand-custom:hover{color:#ff00e0}
 .menu_item{display: flex; flex-direction: row; justify-content: start; align-items: center; width: 100%; }
-#navbarNav{margin-left:0px;}
-.nav-item{margin-bottom: 10px;}
+#navbarNav{ margin-right: 10px;}
+.nav-item{margin-bottom: 8px; margin-top: 8px;}
+
 
 .topics{font-size:26px; color:rgb(255, 255, 255); font-weight: bold; width: 100%; text-align: center; margin-bottom: 30px;}
 .sm-topics{color:white}
@@ -31,13 +32,9 @@ body > .skiptranslate {
   }
 
   .google{
-    position: absolute;
-    color: whitesmoke; 
-    height: 30px; font-size: 18px; 
-    font-weight: bold; 
-    top: 120px;
-    right: 20px;
-    
+ 
+    width:85px 
+  
     }
 .welcometitle{font-weight: bold; color:rgb(255, 255, 255); text-align:left; }
 .welcometitle span{color:rgb(255, 120, 10)}
@@ -60,12 +57,14 @@ body > .skiptranslate {
 .wtitle{font-size: 22px; font-weight: bold; text-decoration: underline;}    
 .codelogo{width:45px; height:45px; margin-right: 10px;}
 .chatcontainer{height:100vh; display:flex; flex-direction:column; justify-content: start; align-items: center; }
-.chatroom{position: relative; max-width: 600px; width:90%;  background-color: whitesmoke; height: 100%; margin-top: 70px; margin-bottom: 10px; border:none}
+.chatroom{position:fixed; max-width: 600px; width:90%;  background-color: whitesmoke; max-height: 85%; top:90px; bottom: 10px; border:none}
 .topic{
+  overflow: hidden;
   background-color: rgb(231, 219, 219) ;
   border-radius: 5px 5px 0px 0px;
-  padding: 10px;
+  padding: 12px;
   width: 100%;
+  height: 80px;
   font-weight: bold;
   font-size:x-large;
   display: flex; 
@@ -73,7 +72,7 @@ body > .skiptranslate {
   justify-content: space-between; 
   align-items: center;}
 .chatbar{border-radius: 0px 0px 5px 5px; padding: 10px; background-color: rgb(184, 184, 184);  position: absolute; width: 100%; bottom:0px}  
-.chatcontent{max-height:700px; margin-bottom:70px; padding: 20px; overflow-y:auto; }
+.chatcontent{ padding: 20px; overflow-y:auto; height: 97%;}
 .welcome-user{position: absolute; top: 120px; right:13px;}
 .username{background-color: rgb(63, 63, 63); color:white; border-radius: 5px; padding: 8px 15px 8px 15px; margin-bottom: 5px;}
 #joiners{color:white;}
@@ -96,9 +95,9 @@ body > .skiptranslate {
 .signup{display: none;}
 .homecontent{display: none;}
 .homecontent{color:white}
-.pinkbtn{background-color: rgb(252, 35, 205); color: whitesmoke; border: 1px solid pink;}
-.pinkbtn:hover{color:whitesmoke}
-.loginus{padding-left: 30px; padding-right: 30px;}
+.pinkbtn{padding-left: 30px; padding-right: 30px; background-color: #ff2d75; color: whitesmoke; margin-left: 20px; border-radius: 20px;}
+.pinkbtn:hover{color:whitesmoke; background-color: #ff1869;}
+.loginus{padding-left: 30px; padding-right: 30px; border-radius: 25px; margin-left: 20px;}
 
 .outer{
   position: relative;
@@ -108,7 +107,7 @@ body > .skiptranslate {
 
 .button{
   height:40px;
-  width:130px;
+  width:110px;
   border-radius: 50px;
 }
 
@@ -138,13 +137,13 @@ body > .skiptranslate {
 
 .button a, .button button{
   height: 30px;
-  width: 120px;
+  width: 100px;
   border-radius: 50px;
 }
 
 .outer span{
   height: 40px;
-  width: 130px;
+  width: 110px;
   background: inherit;
 }
 
@@ -424,4 +423,32 @@ body > .skiptranslate {
   align-items: center;
 }
 
+.logbutton{display: flex; flex-direction: row; justify-content:end; margin-top: -3px;}
+
+.signupbtn{
+  background-color: #ff2d75;
+  color:white;
+  font-weight: bold;
+  margin-left: 100px;
+  border-radius: 25px;
+  width: 100px;
+}
+
+.signupbtn:hover{
+  background-color: #ff1869;
+  color:white;
+  
+}
+
+.loginbtn{
+  width: 100px;
+  font-weight: bold;
+  border-radius: 25px;
+}
+
+.logoutbtn{
+  width: 100px;
+  font-weight: bold;
+  border-radius: 25px;
+}
 

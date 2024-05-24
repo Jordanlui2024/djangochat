@@ -6,6 +6,9 @@
   body {
     font-family:"Exo 2", sans-serif; 
     background-image: url("{% static 'images/home.png' %}"), linear-gradient(180deg, rgba(2,0,.6,1) 0%, rgba(9,9,121,1) 40%,  rgb(13, 40, 163) 100%); 
+    background-repeat: no-repeat;
+    background-size:cover
+    
   }
    .boxs div{
       position: absolute;
@@ -219,7 +222,7 @@
 {{room.slug|json_script:"json-roomname"}}
 <script>
  var page = "{{page}}"; 
- console.log(page);
+
 
 function showhome(){
   $(".login").hide();

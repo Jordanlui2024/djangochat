@@ -35,7 +35,7 @@
   <body class="notranslate">
     <nav class="navbar navbar-expand-xl navbar-custom">
       <div class="container-fluid">
-        <div style="display: flex; flex-direction: flow; margin-right: 100px">
+        <div style="display: flex; flex-direction:row; margin-right: 100px">
           <div style="border-radius: 10px; width: 40px; height: 40px">
             <image
               src="{% static 'images/logo.png' %}"
@@ -66,28 +66,31 @@
                 </div>
               </li>
               {% if request.user.is_authenticated %}
-              <li class="navbar-item">
+
+              <li class="nav-item">
                 <div class="outer button">
-                  <a href="{% url 'roomsPage' %}">Chat Room</a>
+                  <a href="{% url 'roomsPage' %}">Chat</a>
                   <span></span>
                   <span></span>
                 </div>
               </li>
-              <li class="nav-item">
+              {% comment %} <li class="nav-item">
                 <div class="outer button">
                   <a href="{% url 'homePage' %}">Forum</a>
                   <span></span>
                   <span></span>
                 </div>
-              </li>
+              </li> {% endcomment %}
+              
+              
               {% endif %}
               <li class="nav-item">
-                <div class="outer button" style="width: 160px">
-                  <a href="{% url 'videoListPage' %}" style="width: 150px"
-                    >Video Tutorials</a
+                <div class="outer button">
+                  <a href="{% url 'videoListPage' %}"
+                    >Video</a
                   >
-                  <span style="width: 160px"></span>
-                  <span style="width: 160px"></span>
+                  <span></span>
+                  <span></span>
                 </div>
               </li>
               <li class="nav-item">
@@ -112,39 +115,30 @@
                 </div>
               </li>
             
-              {% if request.user.is_authenticated %}
-              
-              <li class="nav-item">
-                <form method="POST" action="{% url 'logoutPage' %}">
-                  {% csrf_token %}
-                  <div class="outer button">
-                    <button>Logout</button>
-                    <span></span>
-                    <span></span>
-                  </div>
-                </form>
-              </li>
-              
-              {% else %}
-              <li>
-                <div class="outer button">
-                  <a href="{% url 'loginPage' %}">Login</a>
-                  <span></span>
-                  <span></span>
-                </div>
-              </li>
-              <li>
-                <div class="outer button">
-                  <a href="{% url 'signupPage' %}">Signup</a>
-                  <span></span>
-                  <span></span>
-                </div>
-              </li>
-              
-              {% endif %}
-             
+       
+
             </ul>
           </div>
+
+          <div class="logbutton">
+          {% if request.user.is_authenticated %}
+            <form method="POST" action="{% url 'logoutPage' %}">
+              {% csrf_token %}
+             
+                <button class="btn btn-primary logoutbtn">Logout</button>
+   
+            </form>
+          {% else %} 
+       
+              <a href="{% url 'loginPage' %}" class="btn btn-primary loginbtn">Login</a>
+   
+   
+         
+              <a href="{% url 'signupPage' %}" class="btn signupbtn">Signup</a>
+
+          {% endif %}
+          </div> 
+
         </div>
       </div>
     </nav>

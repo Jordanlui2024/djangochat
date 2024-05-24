@@ -5,24 +5,26 @@
 <style>
    body {
      font-family:"Exo 2", sans-serif;
-     background-image: url("{% static 'images/home.png' %}"), linear-gradient(180deg, rgba(2,0,.6,1) 0%, rgba(9,9,121,1) 40%,  rgb(13, 40, 163) 100%);
+     background-image: linear-gradient(180deg, rgba(2,0,.6,1) 0%, rgba(9,9,121,1) 40%,  rgb(13, 40, 163) 100%);
    }
  </style>
 {% endblock  %}
 {% block content %}
 <div class="chatcontainer">
   
-  <div class="card chatroom translate">
+  <div class="card chatroom">
+    
     <div class="topic" >
       <div>
       <image src="{% static 'images/'  %}{{room.image}}" style="width:45px; margin-right:10px"/>
       {{room.name}}
       </div>
       
-      <div id="google_translate_element"></div>
+      <div id="google_translate_element" class="google"></div>
        
     </div>
-    <div class="chatcontent" id="chat-messages">
+
+    <div class="chatcontent translate" id="chat-messages">
       {% for m in messages %}
          {% if request.user.username == m.user.username %}
         <div class="iam_say">
@@ -55,12 +57,7 @@
 </div>
 {% endblock %}
 
-{% block animate %}
 
-<canvas id="matrix" />
-
-
-{% endblock  %}
 
 {% block script %}
 {{room.slug|json_script:"json-roomname"}}
@@ -79,29 +76,7 @@
 
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<script>
-  {% comment %} var q = document.getElementById("matrix"),
-  s=window.screen,
-  w=q.width=window.innerWidth,
-  h=q.height=window.innerHeight,
-  p=Array(256).join(1).split(""),
-  c=q.getContext('2d'),
-  m=Math;
-
-  setInterval(function(){
-    c.fillStyle='rgba(0,0,0,0.05)';
-    c.fillRect(0,0,w,h);
-    c.fillStyle='rgba(0,255,0,0.8)';
-    p=p.map(function(v,i){
-      r=m.random();
-      var str= String.fromCharCode(m.floor(2720+r*33));
-      c.fillText(str, i*10,v);
-      v+=10;
-      var ret = v>768+r*1e4?0:v
-      return ret;
-    });
-  },100); {% endcomment %}
-  
+<script type="text/javascript">  
   const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
   const userName = JSON.parse(document.getElementById('json-username').textContent);
   console.log(location.protocol)
