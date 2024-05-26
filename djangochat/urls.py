@@ -12,6 +12,7 @@ urlpatterns = [
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
     path('', include('core.urls')),
     path('rooms/', include("room.urls")),
+    path('forum/', include('forum.urls')),
     path('contactus/', include('contactus.urls')),
     path('video/', include('video.urls')),
     path('admin/', admin.site.urls),

@@ -37,7 +37,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                joiners.append(self.user_name)
                cache.set(self.room_group_name, joiners)
             
-            print(f"send {joiners}")
+            #print(f"send {joiners}")
             await self.channel_layer.group_send(
                 self.room_group_name,
                     {
@@ -70,7 +70,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
     async def chat_logout(self, event):
         time.sleep(0.5)
         joiners = event['joiners']
-        print(f"send2 {joiners}")
+        # print(f"send2 {joiners}")
         await self.send(text_data=json.dumps({
             'joiners':joiners
         }))

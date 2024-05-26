@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
-
-from .forms import SingUpForm
+from django.contrib.auth.decorators import login_required
+from .forms import SignUpForm
 
 # Create your views here.
 def homePage(request):
@@ -31,7 +31,7 @@ def loginPage(request):
 
 def signupPage(request):
     if request.method == "POST":
-        form = SingUpForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
@@ -39,6 +39,10 @@ def signupPage(request):
         else:
             print(form.errors)    
     else:
-        form = SingUpForm()
+        form = SignUpForm()
             
     return render(request, 'core/homePage.html', {"form":form, "page":"signup"})
+
+# @login_required
+# def profilePage(request):
+    
