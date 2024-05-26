@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Room(models.Model):
     name = models.CharField(max_length=255)
-    image = models.CharField(max_length=30, null=False, default="empty")
+    image = models.ImageField(upload_to="images/", default='', blank=True)
     slug = models.SlugField(unique=True)
 
 class Message(models.Model):

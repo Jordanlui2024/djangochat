@@ -18,7 +18,8 @@
 <div class="box">
   <span>
     <div class="title">  
-      <img src="{% static 'images/' %}{{room.image}}" width="45" height="45" style="margin-right:10px"> 
+      <img src="{{room.image.url}}" width="45" height="45" style="margin-right:10px">
+    
       <div>{{room.name}}</div>
     </div> 
 

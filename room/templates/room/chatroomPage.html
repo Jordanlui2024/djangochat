@@ -12,12 +12,18 @@
 {% block content %}
 <div class="chatcontainer">
   
+  
   <div class="card chatroom">
     
     <div class="topic" >
+     
+        <a href="{% url 'roomsPage' %}" class="backarrow">
+        <i class="material-icons" style="color:black; font-size:35px; margin-top:5px">keyboard_backspace</i>
+        </a>
+    
       <div>
-      <image src="{% static 'images/'  %}{{room.image}}" style="width:45px; margin-right:10px"/>
-      {{room.name}}
+        <image src="{{room.logo_image.url}}" style="width:45px; margin-right:10px"/>
+        {{room.name}}
       </div>
       
       <div id="google_translate_element" class="google"></div>

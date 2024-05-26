@@ -13,8 +13,14 @@
 {% endblock  %}
 {% block content %}
 <div class="content">
-
-     <div class='toptitle'>Youtube Tutorials</div>
+    
+    <a href="{% url 'videoListPage' %}" class="backslack">
+            <div class='toptitle'>
+            <i class="material-icons" style="font-size:30px; color:white; margin-right:30px">keyboard_backspace</i>
+            <div>Youtube Tutorials</div>
+           </div>
+    </a>
+   
         <div class="videocontent">
         {% for youtube in youtubes %}
             <div class="videobox">

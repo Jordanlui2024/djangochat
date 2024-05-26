@@ -3,7 +3,17 @@ body > .skiptranslate {
   display: none;
 } 
 .content{ position: relative; padding-top: 100px;}
-.toptitle{margin-bottom: 20px; width: 100%; text-align: center; font-size: 26px; font-weight: bold; text-decoration: underline; color: whitesmoke;}
+.toptitle{margin-bottom: 20px; 
+  width: 100%; 
+  font-size: 26px; 
+  font-weight: bold; 
+  text-align: center;
+  color: whitesmoke;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 /* navigation bar css */
 .navbar-custom{background-color:rgba(2,0,.6,1);; position: fixed; top:0; width: 100%; z-index: 100;}
 .navbar-brand-custom{font-weight:bold; color:white; font-size:25px; padding-left: 20px; text-decoration: none;}
@@ -450,5 +460,11 @@ body > .skiptranslate {
   width: 100px;
   font-weight: bold;
   border-radius: 25px;
+}
+
+.backslack{
+  text-decoration: none;
+
+  cursor: pointer;
 }
 
