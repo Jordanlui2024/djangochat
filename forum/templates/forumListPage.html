@@ -1,0 +1,57 @@
+{% extends "core/base.html" %} 
+{% load static %}
+{% block title %}Contact Us{% endblock %} 
+{% block style %}
+<style>
+    body {
+        font-family:"Exo 2", sans-serif; 
+        background:linear-gradient(180deg, rgba(2,0,.6,1) 0%, rgba(9,9,121,1) 40%,  rgb(13, 40, 163) 100%); 
+        color:white
+      }
+</style>    
+{% endblock  %}
+{% block content %}
+<div class="content">
+    <div class="toptitle">Forum</div>  
+    <div  class="forumlist">
+    {% for topic in topics %}
+    <a href={% url "forumListPage" %}>
+    <span>{{topic}}</span>
+    </a>
+    {% endfor %}
+    </div>
+    <table class="table tableforum">
+          <thead>
+            <tr>
+              <th scope="col" style="width:80px">User</th>
+              <th scope="col">Topics</th>
+              <th scope="col">Forum</th>
+              <th scope="col">Replies</th>
+              <th scope="col">Views</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+      
+            <tbody>
+                {% for row in range %}   
+                <tr style="height:80px; vertical-align:middle">
+                  <td scope="row" class="usernameth">Mark</td>
+                  <td>this is description for the forum chatting</td>
+                  <td>Python</td>
+                  <td>10</td>
+                  <td>8</td>
+                  <td>10 May 2024</td>
+                  
+                </tr>
+                {% endfor %} 
+            </tbody>  
+    </table>
+</div>
+
+<div class="postforum">
+<div class="postrely">Post a reply</div>
+<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="title"><br/>
+<textarea rows="4" cols="50" class="inputarea"></textarea>
+<button class="btn btn-primary">Submit</button>
+</div>
+{% endblock %}

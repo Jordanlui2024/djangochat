@@ -74,16 +74,14 @@
                   <span></span>
                 </div>
               </li>
-             <li class="nav-item">
-                <div class="outer button">
-                  <a href="{% url 'forumPage' %}">Forum</a>
-                  <span></span>
-                  <span></span>
-                </div>
-              </li>
-              
-              
               {% endif %}
+              <li class="nav-item">
+                 <div class="outer button">
+                   <a href="{% url 'forumListPage' %}">Forum</a>
+                   <span></span>
+                   <span></span>
+                 </div>
+               </li>
               <li class="nav-item">
                 <div class="outer button">
                   <a href="{% url 'videoListPage' %}"
@@ -114,9 +112,6 @@
                   <span></span>
                 </div>
               </li>
-            
-       
-
             </ul>
           </div>
 
@@ -131,9 +126,6 @@
           {% else %} 
        
               <a href="{% url 'loginPage' %}" class="btn btn-primary loginbtn">Login</a>
-   
-   
-         
               <a href="{% url 'signupPage' %}" class="btn signupbtn">Signup</a>
 
           {% endif %}
@@ -144,13 +136,17 @@
     </nav>
 
     <div class="container">
-    
+ 
+      
+      
       {% if request.user.is_authenticated %}
       <div class="welcome">Welcome : {{request.user.username | title}}</div>
       <div class="welcome-user">
         <span id="joiners"></span>
       </div>
       {% endif %} 
+
+
       {% block content %}{% endblock %}
     </div>
 

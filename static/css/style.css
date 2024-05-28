@@ -20,8 +20,7 @@ body > .skiptranslate {
 .navbar-brand-custom:hover{color:#ff00e0}
 .menu_item{display: flex; flex-direction: row; justify-content: start; align-items: center; width: 100%; }
 #navbarNav{ margin-right: 10px;}
-.nav-item{margin-bottom: 8px; margin-top: 8px;}
-
+/* .nav-item{margin-bottom: 8px; margin-top: 8px;} */
 
 .topics{font-size:26px; color:rgb(255, 255, 255); font-weight: bold; width: 100%; text-align: center; margin-bottom: 30px;}
 .sm-topics{color:white}
@@ -464,7 +463,79 @@ body > .skiptranslate {
 
 .backslack{
   text-decoration: none;
-
   cursor: pointer;
 }
 
+/* forum */
+.forumlist{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.forumlist a{
+  padding: 3px 20px 3px 20px;
+  min-width: 80px;
+  text-align: center;
+  color:#848383;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 25px;
+  margin-bottom: 10px;
+  background-color: rgb(238, 238, 232);
+  border:1px solid rgb(208, 207, 207)
+}
+
+.forumlist a:hover{
+  background-color: rgb(240, 238, 237);
+  color:black;
+}
+
+.tableforum{
+  
+  border: solid rgb(231, 226, 226) 1px;
+  border-radius: 6px;
+  background-color: rgb(252, 255, 228);
+}
+
+td, th {
+  background-color: rgb(201, 195, 195);
+  background-color: rgb(201, 195, 195);
+}
+.tableforum th {
+  background-color: rgb(233, 233, 233);
+  border-top: none;
+  text-align: center;
+}
+
+td:first-child, th:first-child {
+  border-left: none;
+  text-align: center;
+}
+
+.tableforum tr:nth-child(even){
+  background-color: #f3f3d3;
+}
+
+.inputarea{
+  width: 100%;
+  border-radius: 5px;
+}
+
+.postforum{
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: whitesmoke;
+}
+
+.postrely{
+  color:black
+}
+
+.inputarea{
+  padding: 10px;
+}
