@@ -1,6 +1,6 @@
 {% extends "core/base.html" %} 
 {% load static %}
-{% block title %}Contact Us{% endblock %} 
+{% block title %}Forum List{% endblock %} 
 {% block style %}
 <style>
     body {
@@ -13,45 +13,54 @@
 {% block content %}
 <div class="content">
     <div class="toptitle">Forum</div>  
-    <div  class="forumlist">
+    {% comment %} <div  class="forumlist">
     {% for topic in topics %}
     <a href={% url "forumListPage" %}>
     <span>{{topic}}</span>
     </a>
     {% endfor %}
-    </div>
+    </div> {% endcomment %}
     <table class="table tableforum">
           <thead>
             <tr>
               <th scope="col" style="width:80px">User</th>
               <th scope="col">Topics</th>
-              <th scope="col">Forum</th>
-              <th scope="col">Replies</th>
-              <th scope="col">Views</th>
-              <th scope="col">Date</th>
             </tr>
           </thead>
       
             <tbody>
-                {% for row in range %}   
-                <tr style="height:80px; vertical-align:middle">
-                  <td scope="row" class="usernameth">Mark</td>
-                  <td>this is description for the forum chatting</td>
-                  <td>Python</td>
-                  <td>10</td>
-                  <td>8</td>
-                  <td>10 May 2024</td>
-                  
+               {% for forum in forumlist %}
+                <tr style="height:90px; vertical-align:middle">
+                  <td scope="row" class="username">{{forum.author.username|capfirst }}</td>
+                  <td>
+                    <a href={% url "forumPage" forum_id=forum.id %} class="forumlink">
+                     <div class="forumlistcontent">
+                      <div class="titleforum">{{forum.title}}</div>
+                      <div class="forumdetail">
+                        <span>Replies : {{forum.replies}}</span>
+                        <span>Views :{{forum.views}}</span>
+                        <span>Date : {{forum.publication_date|date:"F d, Y"}}</span>
+                      </div>
+                    </div> 
+                  </a>
+                  </td> 
                 </tr>
-                {% endfor %} 
+               {% endfor %}
             </tbody>  
     </table>
 </div>
-
+{% if request.user.is_authenticated == True %}  
 <div class="postforum">
-<div class="postrely">Post a reply</div>
-<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="title"><br/>
-<textarea rows="4" cols="50" class="inputarea"></textarea>
-<button class="btn btn-primary">Submit</button>
+<div class="postrely">Post a topic</div>
+<form method="POST">
+  {% csrf_token %}
+  {{ form.media }}
+  {{ form.as_p }}
+  <button class="btn btn-primary">Submit</button>
+</form>
 </div>
+{% else %}
+<div>Login for create your forum topic </div>
+
+{% endif %}
 {% endblock %}

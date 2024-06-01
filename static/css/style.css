@@ -31,13 +31,13 @@ body > .skiptranslate {
 .roomlist{display:flex; justify-content: left; flex-wrap: wrap; }
 .cardroom{display:none; margin-left: 16px; margin-right: 16px; margin-bottom: 32px;}
 .welcome{
-  position: absolute;
   color: whitesmoke; 
-  height: 30px; font-size: 18px; 
+  height: 100%; font-size: 18px; 
   font-weight: bold; 
-  top: 70px;
-  right: 20px;
-  color:yellow
+  color:yellow;
+  white-space: nowrap;
+  margin-top: 5px;
+  margin-right: 10px;
   }
 
   .google{
@@ -108,26 +108,26 @@ body > .skiptranslate {
 .pinkbtn:hover{color:whitesmoke; background-color: #ff1869;}
 .loginus{padding-left: 30px; padding-right: 30px; border-radius: 25px; margin-left: 20px;}
 
-.outer{
+.nav-item .outer{
   position: relative;
   margin-left: 10px;
   background:rgba(2,0,.6,1)
 }
 
-.button{
+.nav-item .button{
   height:40px;
   width:110px;
   border-radius: 50px;
 }
 
-.outer a, .outer span, .outer button{
+.nav-item .outer a, .nav-item .outer span, .nav-item .outer button{
   position:absolute;
   top:50%;
   left:50%;
   transform: translate(-50%, -50%);
 }
 
-.outer a, .outer button{
+.nav-item .outer a, .nav-item .outer button{
   padding-top: 2px;
   display: table-cell;
   vertical-align: middle;
@@ -144,37 +144,37 @@ body > .skiptranslate {
   font-weight: bold;
 }
 
-.button a, .button button{
+.nav-item .button a, .nav-item .button button{
   height: 30px;
   width: 100px;
   border-radius: 50px;
 }
 
-.outer span{
+.nav-item .outer span{
   height: 40px;
   width: 110px;
   background: inherit;
 }
 
 
-.button span{
+.nav-item .button span{
   border-radius: 50px;
 }
 
-.outer:hover span:nth-child(1){
+.nav-item .outer:hover span:nth-child(1){
   filter: blur(7px);
 }
 
-.outer:hover span:nth-child(2){
+.nav-item .outer:hover span:nth-child(2){
   filter: blur(14px);
 }
 
-.outer:hover{
+.nav-item .outer:hover{
   background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);
-  animation: rotate 1.5s linear infinite;
+  animation: rotatebtn 1.5s linear infinite;
 }
 
-@keyframes rotate{
+@keyframes rotatebtn{
   0%{
     filter:hue-rotate(0deg);
   }
@@ -495,7 +495,6 @@ body > .skiptranslate {
 }
 
 .tableforum{
-  
   border: solid rgb(231, 226, 226) 1px;
   border-radius: 6px;
   background-color: rgb(252, 255, 228);
@@ -509,6 +508,13 @@ td, th {
   background-color: rgb(233, 233, 233);
   border-top: none;
   text-align: center;
+}
+.tableforum .username{
+  vertical-align: top;
+  padding-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color:#413f3f
 }
 
 td:first-child, th:first-child {
@@ -530,12 +536,126 @@ td:first-child, th:first-child {
   padding: 20px;
   margin-bottom: 20px;
   background-color: whitesmoke;
+  color: #161616;
+}
+
+label{
+  color: #1c1b1b;
 }
 
 .postrely{
+  margin-bottom: 12px;
   color:black
 }
 
 .inputarea{
   padding: 10px;
 }
+
+.forumdetail{
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  width: 100%;
+  font-weight: bold;
+  bottom:0px
+}
+
+.titleforum{
+  color:black;
+  font-weight: bold;
+  font-size: 18px
+}
+
+.titleforuminput{
+  color:black;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.forumdetail span{
+  color:#848383;
+  margin-right: 30px;
+  font-size: 12px;
+}
+
+.forumlink{
+  text-decoration: none;
+}
+
+.forumlink .forumlistcontent{
+  height: 80px;
+  padding-left: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.table{
+  border-collapse: none;
+}
+
+.forumreply{
+  border: solid rgb(231, 226, 226) 1px;
+  border-radius: 6px;
+  background-color: rgb(255, 255, 255);
+}
+
+.forumreply th{
+  color:#1c1b1b;
+  background-color: rgb(242, 234, 234);
+}
+
+.forumreply td{
+  color:#161616;
+  vertical-align: top;
+  min-height: 180px;
+  height: 180px;
+}
+
+.forumreply .username{
+  vertical-align: top;
+  padding-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color:#413f3f;
+  background-color: rgb(232, 232, 255);
+}
+.forumreply .forumcontent{
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.forumreply .forumcontent .title{
+  font-size:18px;
+  font-weight: bold;
+}
+
+.forumdetail{
+  vertical-align:bottom;
+}
+.forumdetail>span{
+  font-size: 16px;
+}
+.forumdetail .reply{
+  cursor: pointer;
+}
+
+.ck-content{ width:100%; display: table;}
+.topicback{
+  float: left;
+  width: 30px;
+  font-weight: bold;
+  margin-top: 5px;
+  cursor: pointer;
+} 
+
+
+
+
+

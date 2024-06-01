@@ -53,3 +53,4 @@ djangochat/.env
 staticfile/
 requirements.txt
 db.sqlite3
+media/

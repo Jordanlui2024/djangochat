@@ -19,7 +19,7 @@ def loginPage(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('roomsPage')
+                return redirect('homePage')
             else:
                 messages.error(request, 'Invalid username or password.')
         else:
@@ -35,7 +35,7 @@ def signupPage(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('roomsPage')
+            return redirect('homePage')
         else:
             print(form.errors)    
     else:

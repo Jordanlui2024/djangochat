@@ -13,14 +13,76 @@
 {% endblock  %}
 {% block content %}
 <div class="content">
+  <table class="forumreply table">
+    <thead>
+      <tr>
+        <th scope="col" colspan="2">
+          <div class="topicback">
+          <i class="material-icons" style="font-size:38px">keyboard_backspace</i>
+          </div>
+          <h3>{{forum.title}}</h3>
+        </th>
+      </tr>
+    </thead>
 
-  {% comment %} <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a class="breadcrumb-href" href="{% url "forumListPage" %}">Fourm</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Python</li>
-      </ol>
-    </nav> {% endcomment %}
+      <tbody>
+        <tr style="height:80px; vertical-align:middle">
+          <td scope="row" class="username">{{forum.author.username|capfirst}}</td>
+          <td>
+             <div class="forumcontent">
+              <div class="ck-content">
+                {{forum.content|safe}}
+              </div>
+              <div class="forumdetail">
+                <span>Replies : {{forum.replies}}</span>
+                <span>Views :{{forum.views}}</span>
+                <span>Date : {{forum.publication_date|date:"F d, Y"}}</span>
+              </div>
+              {% comment %} <div class="forumdetail">
+                  <span>Like:10</span>
+                  <span>Unlike:2</span>
+              </div> {% endcomment %}
+            </div>
+          </td> 
+        </tr>
+        {% for reply in replylist %}
+        <tr style="height:80px; vertical-align:middle">
+          <td scope="row" class="username">{{reply.author.username|capfirst}}</td>
+          <td>
+             <div class="forumcontent">
+              <div class="ck-content">
+                {{reply.content|safe}}
+              </div>
+              <div class="forumdetail">
+                  <span>Like:{{reply.like}}</span>
+                  <span>Unlike:{{reply.unlike}}</span>
+              </div> 
+            </div>
+          </td> 
+        </tr>
+        {% endfor %}
+  
 
-forumPage
+      </tbody>
+    </table>      
+    <div class="postforum">
+      <div class="postrely">Post a reply</div>
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <button class="btn btn-primary">Submit</button>
+      </form>
+      </div>
 </div>
+{% endblock %}
+{% block script %}
+<script>
+$(function(){
+  $(".topicback").on("click", function(){
+    history.back(1);
+  })
+})
+
+</script>
 {% endblock %}

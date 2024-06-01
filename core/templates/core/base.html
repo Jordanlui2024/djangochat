@@ -116,10 +116,10 @@
           </div>
 
           <div class="logbutton">
-          {% if request.user.is_authenticated %}
+            {% if request.user.is_authenticated %}
+            <div class="welcome">Welcome : {{request.user.username | title}}</div>
             <form method="POST" action="{% url 'logoutPage' %}">
               {% csrf_token %}
-             
                 <button class="btn btn-primary logoutbtn">Logout</button>
    
             </form>
@@ -140,7 +140,6 @@
       
       
       {% if request.user.is_authenticated %}
-      <div class="welcome">Welcome : {{request.user.username | title}}</div>
       <div class="welcome-user">
         <span id="joiners"></span>
       </div>
