@@ -33,7 +33,7 @@
                 <tr style="height:90px; vertical-align:middle">
                   <td scope="row" class="username">{{forum.author.username|capfirst }}</td>
                   <td>
-                    <a href={% url "forumPage" forum_id=forum.id %} class="forumlink">
+                    <a href={% url "forumPage" forum_id=forum.id page=page %} class="forumlink">
                      <div class="forumlistcontent">
                       <div class="titleforum">{{forum.title}}</div>
                       <div class="forumdetail">
@@ -51,7 +51,11 @@
 </div>
 {% if request.user.is_authenticated == True %}  
 <div class="postforum">
-<div class="postrely">Post a topic</div>
+<div class="postrely">
+  <span>Post a topic</span>
+  <a href={% url "articlePage" author_id=request.user.id %} class="btn btn-success">List Your Posts</a>
+
+</div>
 <form method="POST">
   {% csrf_token %}
   {{ form.media }}

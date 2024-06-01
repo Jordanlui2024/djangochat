@@ -1,0 +1,64 @@
+{% extends "core/base.html" %} 
+{% load static %}
+{% block title %}Forum Article{% endblock %} 
+{% block style %}
+<style>
+    body {
+        font-family:"Exo 2", sans-serif; 
+        background:linear-gradient(180deg, rgba(2,0,.6,1) 0%, rgba(9,9,121,1) 40%,  rgb(13, 40, 163) 100%); 
+        color:white
+      }
+</style>    
+{% endblock  %}
+{% block content %}
+<div class="content">
+    <table class="table tableforum">
+        <thead>
+          <tr>
+            <th scope="col" style="width:80px">User</th>
+            <th scope="col">Topics</th>
+          </tr>
+        </thead>
+    
+          <tbody>
+             {% for forum in forumlist %}
+              <tr style="vertical-align:middle">
+                <td scope="row" class="username">{{forum.author.username|capfirst }}</td>
+                <td scope="row" style="padding:15px 15px 15px 20px">
+                 
+                   <div class="forumlistcontent">
+                    <div style="float:right">Post Date: {{forum.publication_date | date:"F d, Y"}}</div>
+                    <div class="titleforum">{{forum.title}}</div>
+                    <div class="ck-content">
+                        {{forum.content|safe}}
+                    </div>
+                    <div class="forumdetail">
+                       <span><button class="btn btn-danger">Delete Article</button></span>
+                       <span><button class="btn btn-success">Edit Article</button></span>
+                    </div>
+                  </div> 
+         
+                </td> 
+              </tr>
+             {% endfor %}
+          </tbody>  
+  </table>
+</div>
+{% if request.user.is_authenticated == True %}  
+<div class="postforum">
+<div class="postrely">
+  <span>Post a topic</span>
+</div>
+<form method="POST">
+  {% csrf_token %}
+  {{ form.media }}
+  {{ form.as_p }}
+  <button class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% else %}
+<div>Login for create your forum topic </div>
+
+{% endif %}
+</div>
+{% endblock %}        

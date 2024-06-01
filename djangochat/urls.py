@@ -13,7 +13,7 @@ urlpatterns = [
     path('', include('core.urls')),
     path("ckeditor5/", include('django_ckeditor_5.urls'), name="ck_editor_5_upload_file"),
     path('rooms/', include("room.urls")),
-    path('forumlist/', include('forum.urls')),
+    path('forum/', include('forum.urls')),
     path('contactus/', include('contactus.urls')),
     path('video/', include('video.urls')),
     path('admin/', admin.site.urls),

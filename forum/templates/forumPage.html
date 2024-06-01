@@ -18,7 +18,9 @@
       <tr>
         <th scope="col" colspan="2">
           <div class="topicback">
+          <a href="{% url 'forumListPage' page=page %}">  
           <i class="material-icons" style="font-size:38px">keyboard_backspace</i>
+          </a>
           </div>
           <h3>{{forum.title}}</h3>
         </th>
@@ -78,11 +80,11 @@
 {% endblock %}
 {% block script %}
 <script>
-$(function(){
+{% comment %} $(function(){
   $(".topicback").on("click", function(){
     history.back(1);
   })
-})
+}) {% endcomment %}
 
 </script>
 {% endblock %}

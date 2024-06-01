@@ -514,7 +514,8 @@ td, th {
   padding-top: 15px;
   font-size: 18px;
   font-weight: bold;
-  color:#413f3f
+  color:#413f3f;
+  background-color: rgb(232, 232, 255);
 }
 
 td:first-child, th:first-child {
@@ -544,6 +545,9 @@ label{
 }
 
 .postrely{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin-bottom: 12px;
   color:black
 }
