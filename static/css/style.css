@@ -651,13 +651,18 @@ label{
 }
 
 .ck-content{ width:100%; display: table;}
+
 .topicback{
   float: left;
   width: 30px;
   font-weight: bold;
   margin-top: 5px;
   cursor: pointer;
-} 
+}
+
+.modal{
+  color:#1c1b1b
+}
 
 
 

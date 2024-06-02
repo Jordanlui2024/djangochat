@@ -56,8 +56,9 @@
                 {{reply.content|safe}}
               </div>
               <div class="forumdetail">
-                  <span>Like:{{reply.like}}</span>
-                  <span>Unlike:{{reply.unlike}}</span>
+                  {% comment %} <span>Like:{{reply.like}}</span>
+                  <span>Unlike:{{reply.unlike}}</span> {% endcomment %}
+                  <span>Post Date : {{reply.publication_date|date:"F d, Y"}}</span>
               </div> 
             </div>
           </td> 

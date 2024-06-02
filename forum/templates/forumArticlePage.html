@@ -11,7 +11,27 @@
 </style>    
 {% endblock  %}
 {% block content %}
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Record</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="delete-text">
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="confirmdel" data-bs-dismiss="modal">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="content">
+
+   
     <table class="table tableforum">
         <thead>
           <tr>
@@ -28,22 +48,49 @@
                  
                    <div class="forumlistcontent">
                     <div style="float:right">Post Date: {{forum.publication_date | date:"F d, Y"}}</div>
-                    <div class="titleforum">{{forum.title}}</div>
+                    <div class="titleforum" id="title{{forum.id}}">{{forum.title}}</div>
                     <div class="ck-content">
                         {{forum.content|safe}}
                     </div>
                     <div class="forumdetail">
-                       <span><button class="btn btn-danger">Delete Article</button></span>
-                       <span><button class="btn btn-success">Edit Article</button></span>
+                      <span><button class="btn btn-danger delconfirm" deltitle="{{forum.id}}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete Article</button></span>
+                      
+                      <form action="." method="GET">
+                        <input text="text" name="forumid" value="{{forum.id}}" />
+                        <span><button class="btn btn-success">Edit Article</button></span>
+                      </form>
                     </div>
                   </div> 
-         
                 </td> 
               </tr>
-             {% endfor %}
-          </tbody>  
-  </table>
+              {% endfor %}
+            </tbody>  
+          </table>
+          <form action="." id="deleterec" method="POST">
+            {% csrf_token %}
+            <input text="text" name="forumid" id="forumid" style="display:none"/>
+          </form>
 </div>
+
+{% block script %}
+<script>
+$(function(){
+  var titleid = "";
+  $(".delconfirm").on("click", function(){
+     titleid = $(this).attr("deltitle");
+     var title = $("#title"+titleid).html();
+     $("#delete-text").html('Are you sure you want to delete "' +title + '" ?');
+  })
+  $("#confirmdel").on("click", function(){
+     $("#forumid").val(titleid);
+     $("#deleterec").submit()
+  })
+
+})
+
+
+</script>
+{% endblock  %}
 {% if request.user.is_authenticated == True %}  
 <div class="postforum">
 <div class="postrely">

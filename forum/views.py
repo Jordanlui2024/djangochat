@@ -13,6 +13,8 @@ def forumPage(request, forum_id, page=1):
           reply.forum = forum
           reply.author = request.user
           reply.save()
+          forum.replies +=1
+          forum.save()
        else:
           print(forum.error)  
     else:
@@ -22,7 +24,7 @@ def forumPage(request, forum_id, page=1):
           forum.views += 1
           forum.save()
     form = RelyForm()
-    replylist = ReplyModel.objects.order_by("-publication_date")
+    replylist = ReplyModel.objects.filter(forum__id=forum_id).order_by("publication_date")
     return render(request, 'forumPage.html', {"form":form, "forum":forum, "replylist":replylist, "page":page})
 
 
@@ -43,7 +45,19 @@ def forumListPage(request, page=1):
 
 @login_required
 def forumArticlePage(request, author_id):
-    print(author_id)
+    if request.method == "POST":
+        delid = request.POST['forumid']
+        del_rec = ForumModel.objects.get(id=delid)
+        del_rec.delete()
+        form = ForumForm()
+
+    # elif request.method == "GET":
+    #     forumId = request.GET['forumid']
+    #     print(forumId)
+    #     forumdata = ForumModel.objects.get(id=forumId)
+    #     form = ForumForm(forumdata)
+   
+    
     form = ForumForm()
-    forumlist = ForumModel.objects.filter(author__id=author_id)
+    forumlist = ForumModel.objects.filter(author__id=author_id).order_by("-publication_date")
     return render(request, "forumArticlePage.html", {"form": form, "forumlist": forumlist})
