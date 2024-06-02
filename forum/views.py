@@ -44,20 +44,44 @@ def forumListPage(request, page=1):
     return render(request, "forumListPage.html", {"form": form, "forumlist": forumlist, "page":page})
 
 @login_required
-def forumArticlePage(request, author_id):
+def forumArticlePage(request):
+    author_id = request.user.pk
+    updateid = 0
     if request.method == "POST":
-        delid = request.POST['forumid']
-        del_rec = ForumModel.objects.get(id=delid)
-        del_rec.delete()
+        if 'forumid_del' in  request.POST:
+            delid = request.POST['forumid_del']
+            del_rec = ForumModel.objects.get(id=delid)
+            del_rec.delete()
+            form = ForumForm()
+        elif 'forumid_edit' in request.POST:
+            editid = request.POST['forumid_edit']
+            forumdata = ForumModel.objects.get(pk=editid)
+            form = ForumForm(instance=forumdata)
+            updateid = editid
+        else:
+            if 'id' in request.POST:
+                post_data = request.POST.copy()
+                post_data.pop('id', None)
+                editid = request.POST.get("id", None)
+                forumdata = ForumModel.objects.get(pk=editid)   
+                editform = ForumForm(post_data, instance=forumdata)
+                editform.save()
+                form = ForumForm()
+            else:
+                form = ForumForm(request.POST)
+                if form.is_valid():
+                    forum = form.save(commit=False)
+                    forum.author = request.user
+                    forum.save()
+                form = ForumForm()                   
+    else:
         form = ForumForm()
-
-    # elif request.method == "GET":
-    #     forumId = request.GET['forumid']
-    #     print(forumId)
-    #     forumdata = ForumModel.objects.get(id=forumId)
-    #     form = ForumForm(forumdata)
-   
-    
-    form = ForumForm()
+                
     forumlist = ForumModel.objects.filter(author__id=author_id).order_by("-publication_date")
-    return render(request, "forumArticlePage.html", {"form": form, "forumlist": forumlist})
+    return render(request, "forumArticlePage.html", {"form": form, "forumlist": forumlist, "updateid":updateid})
+
+
+@login_required
+def forumReplyPage(request):
+    
+    return render(request, "forumReply.html")

@@ -566,6 +566,7 @@ label{
 }
 
 .titleforum{
+  float: left;
   color:black;
   font-weight: bold;
   font-size: 18px
@@ -607,8 +608,16 @@ label{
 }
 
 .forumreply th{
-  color:#1c1b1b;
-  background-color: rgb(242, 234, 234);
+  vertical-align: middle;
+  padding: 5px;
+  color:#ffffff;
+  background-color: rgb(94, 84, 235);
+}
+
+
+#backstack{
+  text-decoration: none;
+  color:white
 }
 
 .forumreply td{
@@ -650,13 +659,13 @@ label{
   cursor: pointer;
 }
 
-.ck-content{ width:100%; display: table;}
+.ck-content{ width:100%; display: table}
 
 .topicback{
   float: left;
   width: 30px;
   font-weight: bold;
-  margin-top: 5px;
+  margin-top: 8px;
   cursor: pointer;
 }
 
@@ -664,6 +673,10 @@ label{
   color:#1c1b1b
 }
 
+.article_topics{
+  background: rgb(34, 131, 34);
+  color:white
+}
 
 
 

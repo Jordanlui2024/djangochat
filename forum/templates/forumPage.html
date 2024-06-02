@@ -13,16 +13,17 @@
 {% endblock  %}
 {% block content %}
 <div class="content">
+  <div class="toptitle">Forum Reply</div>  
   <table class="forumreply table">
     <thead>
       <tr>
         <th scope="col" colspan="2">
           <div class="topicback">
-          <a href="{% url 'forumListPage' page=page %}">  
-          <i class="material-icons" style="font-size:38px">keyboard_backspace</i>
+          <a href="{% url 'forumListPage' page=page %}" id="backstack">  
+          <i class="material-icons" style="font-size:25px">keyboard_backspace</i>
           </a>
           </div>
-          <h3>{{forum.title}}</h3>
+          <h5 style="margin-top:8px">{{forum.title}}</h5>
         </th>
       </tr>
     </thead>
@@ -69,6 +70,7 @@
       </tbody>
     </table>      
     <div class="postforum">
+      <a href="{% url 'replyPage' %}" class="btn btn-warning" style="float:right">List your replies</a>
       <div class="postrely">Post a reply</div>
       <form method="POST">
         {% csrf_token %}

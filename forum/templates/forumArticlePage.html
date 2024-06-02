@@ -11,7 +11,7 @@
 </style>    
 {% endblock  %}
 {% block content %}
-
+{{ form.media }}
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -31,36 +31,47 @@
 </div>
 <div class="content">
 
-   
+  <div class="toptitle">{{request.user.username | capfirst}} Forum</div>  
     <table class="table tableforum">
         <thead>
-          <tr>
-            <th scope="col" style="width:80px">User</th>
-            <th scope="col">Topics</th>
+          <tr>  
+            <th scope="col" style="background-color:rgb(34, 131, 34); color:white">
+              <div class="topicback">
+                <a href="{% url 'forumListPage' page=1 %}" id="backstack">  
+                <i class="material-icons" style="font-size:25px">keyboard_backspace</i>
+                </a>
+              </div>
+              <h5 style="margin-top:8px">
+              Topics
+              </h5>
+            </th>
           </tr>
         </thead>
     
           <tbody>
              {% for forum in forumlist %}
-              <tr style="vertical-align:middle">
-                <td scope="row" class="username">{{forum.author.username|capfirst }}</td>
-                <td scope="row" style="padding:15px 15px 15px 20px">
+              <tr>
+             
+                <td scope="row" style="padding:15px 15px 15px 20px; min-height:400px; text-align:initial">
                  
                    <div class="forumlistcontent">
                     <div style="float:right">Post Date: {{forum.publication_date | date:"F d, Y"}}</div>
                     <div class="titleforum" id="title{{forum.id}}">{{forum.title}}</div>
+                    <br/><br/>
                     <div class="ck-content">
                         {{forum.content|safe}}
                     </div>
+                    <br/><br/>
                     <div class="forumdetail">
                       <span><button class="btn btn-danger delconfirm" deltitle="{{forum.id}}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete Article</button></span>
                       
-                      <form action="." method="GET">
-                        <input text="text" name="forumid" value="{{forum.id}}" />
+                      <form action="." method="POST">
+                        {% csrf_token %}
+                        <input text="text" name="forumid_edit" value="{{forum.id}}" style="display:none"/>
                         <span><button class="btn btn-success">Edit Article</button></span>
                       </form>
                     </div>
-                  </div> 
+                  </div>
                 </td> 
               </tr>
               {% endfor %}
@@ -68,9 +79,37 @@
           </table>
           <form action="." id="deleterec" method="POST">
             {% csrf_token %}
-            <input text="text" name="forumid" id="forumid" style="display:none"/>
+            <input text="text" name="forumid_del" id="forumid" style="display:none"/>
           </form>
 </div>
+{% if updateid %}  
+<div class="postforum">
+<div class="postrely">
+  <span>Post a topic</span>
+</div>
+<form method="POST" action=".">
+  {% csrf_token %}
+
+  {{ form.as_p }}
+  <input type="number" name="id" value={{updateid}}  style="display:none"/>
+  <button class="btn btn-primary" style="margin-right:80px">Submit</button>
+  <a href={% url "articlePage"%} class="btn btn-secondary">Undo</a>
+</form>
+</div>
+<script>
+$(function(){
+  $('html, body').animate({
+    scrollTop: $(document).height()
+  }, 500);
+})
+
+</script>
+{% endif %}
+
+
+</div>
+{% endblock %}       
+
 
 {% block script %}
 <script>
@@ -91,21 +130,3 @@ $(function(){
 
 </script>
 {% endblock  %}
-{% if request.user.is_authenticated == True %}  
-<div class="postforum">
-<div class="postrely">
-  <span>Post a topic</span>
-</div>
-<form method="POST">
-  {% csrf_token %}
-  {{ form.media }}
-  {{ form.as_p }}
-  <button class="btn btn-primary">Submit</button>
-</form>
-</div>
-{% else %}
-<div>Login for create your forum topic </div>
-
-{% endif %}
-</div>
-{% endblock %}        
