@@ -13,13 +13,7 @@
 {% block content %}
 <div class="content">
     <div class="toptitle">Forum</div>  
-    {% comment %} <div  class="forumlist">
-    {% for topic in topics %}
-    <a href={% url "forumListPage" %}>
-    <span>{{topic}}</span>
-    </a>
-    {% endfor %}
-    </div> {% endcomment %}
+
     <table class="table tableforum">
           <thead>
             <tr>
@@ -31,9 +25,9 @@
             <tbody>
                {% for forum in forumlist %}
                 <tr style="height:90px; vertical-align:middle">
-                  <td scope="row" class="username">{{forum.author.username|capfirst }}</td>
+                  <td scope="row" class="username user{{forum.author.pk}}">{{forum.author.username|capfirst }}</td>
                   <td>
-                    <a href={% url "forumPage" forum_id=forum.id page=page %} class="forumlink">
+                    <a href={% url "forumReplyPage" forum_id=forum.id page=page %} class="forumlink">
                      <div class="forumlistcontent">
                       <div class="titleforum">{{forum.title}}</div>
                       <div class="forumdetail">
@@ -48,12 +42,31 @@
                {% endfor %}
             </tbody>  
     </table>
-</div>
+    {{total_page}}
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="{% url 'forumListPage' page=1 %}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        {% for pageno in total_range %}
+        <li class="page-item"><a class="page-link" href="{% url "forumListPage" page=pageno %}">{{pageno}}</a></li>
+        {% endfor %}
+        <li class="page-item">
+          <a class="page-link" href="{% url 'forumListPage' page=total_pages %}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 {% if request.user.is_authenticated == True %}  
 <div class="postforum">
 <div class="postrely">
   <span>Post a topic</span>
-  <a href={% url "articlePage" %} class="btn btn-success">List Your Posts</a>
+  <a href={% url "articlePage" %} class="btn btn-success listpost" style="display:none">List Your Forum Posts</a>
 
 </div>
 <form method="POST" action=".">
@@ -63,8 +76,20 @@
   <button class="btn btn-primary">Submit</button>
 </form>
 </div>
-{% else %}
-<div>Login for create your forum topic </div>
 
+
+<script>
+$(function(){
+  var userid = "user"+{{request.user.pk}};
+  var num = $("."+userid).length;
+  if(num > 0){
+    $(".listpost").show()
+  }
+})  
+
+</script>
+{% else %}
+<a href={% url 'loginPage' %} class="btn btn-primary">Login for create new forum topic </a>
 {% endif %}
+</div>
 {% endblock %}

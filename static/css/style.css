@@ -518,10 +518,10 @@ td, th {
   background-color: rgb(232, 232, 255);
 }
 
-td:first-child, th:first-child {
+/* td:first-child, th:first-child {
   border-left: none;
   text-align: center;
-}
+} */
 
 .tableforum tr:nth-child(even){
   background-color: #f3f3d3;
@@ -624,7 +624,6 @@ label{
   color:#161616;
   vertical-align: top;
   min-height: 180px;
-  height: 180px;
 }
 
 .forumreply .username{
@@ -661,14 +660,6 @@ label{
 
 .ck-content{ width:100%; display: table}
 
-.topicback{
-  float: left;
-  width: 30px;
-  font-weight: bold;
-  margin-top: 8px;
-  cursor: pointer;
-}
-
 .modal{
   color:#1c1b1b
 }
@@ -677,6 +668,35 @@ label{
   background: rgb(34, 131, 34);
   color:white
 }
+
+.topicback{
+  display: flex;
+  justify-content: space-between;
+  align-items:baseline;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.topicname{
+  font-size: large;
+  font-weight: bold;
+}
+
+.replytopic{
+  text-align: center;
+  font-size: 25px;
+}
+
+.post_date{
+  width: 100%;
+  text-align: right;
+  padding-right: 20px;
+}
+
+.updatereply_banner{
+  background-color: rgb(255, 176, 66);
+}
+
 
 
 

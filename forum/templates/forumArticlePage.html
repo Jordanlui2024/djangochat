@@ -30,17 +30,29 @@
   </div>
 </div>
 <div class="content">
+ {% if forumlist.count == 0 %}
+ <div class="toptitle">
+  <div class="topicback">
+    <a href="{% url 'forumListPage' page=1 %}" id="backstack">  
+    <- no record
+    </a>
+  </div>
+ </div>  
 
-  <div class="toptitle">{{request.user.username | capfirst}} Forum</div>  
+ {% else %}
+  <div class="toptitle">
+    <div class="topicback">
+      <a href="{% url 'forumListPage' page=1 %}" id="backstack">  
+      <-{{request.user.username | capfirst}} Forum
+      </a>
+    </div>
+  
+  </div>  
     <table class="table tableforum">
         <thead>
           <tr>  
             <th scope="col" style="background-color:rgb(34, 131, 34); color:white">
-              <div class="topicback">
-                <a href="{% url 'forumListPage' page=1 %}" id="backstack">  
-                <i class="material-icons" style="font-size:25px">keyboard_backspace</i>
-                </a>
-              </div>
+
               <h5 style="margin-top:8px">
               Topics
               </h5>
@@ -105,9 +117,8 @@ $(function(){
 
 </script>
 {% endif %}
-
-
 </div>
+{% endif %}
 {% endblock %}       
 
 
