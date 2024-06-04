@@ -36,7 +36,7 @@
 
       <tbody>
         <tr style="height:80px; vertical-align:middle">
-          <td scope="row" class="username">{{forum.author.username|capfirst}}</td>
+          <td scope="row" class="username notranslate">{{forum.author.username|capfirst}}</td>
           <td>
              <div class="forumcontent">
               <div class="ck-content">
@@ -45,7 +45,7 @@
               <div class="forumdetail">
                 <span>Replies : {{forum.replies}}</span>
                 <span>Views :{{forum.views}}</span>
-                <span>Date : {{forum.publication_date|date:"F d, Y"}}</span>
+                <span>Date : {{forum.publication_date|date:"y-m-d(h:i a)"}}</span>
               </div>
             </div>
           </td> 
@@ -53,7 +53,7 @@
         
         {% for reply in replylist %}
         <tr style="height:80px; vertical-align:middle">
-          <td scope="row" class="username user{{reply.author.pk}}">
+          <td scope="row" class="username user{{reply.author.pk}} notranslate">
             {{reply.author.username|capfirst}}
           </td>
           <td>
@@ -64,7 +64,7 @@
               <div class="forumdetail">
                   {% comment %} <span>Like:{{reply.like}}</span>
                   <span>Unlike:{{reply.unlike}}</span> {% endcomment %}
-                  <span>Post Date : {{reply.publication_date|date:"F d, Y"}}</span>
+                  <span>Post Date : {{reply.publication_date|date:"y-m-d(h:i a)"}}</span>
               </div> 
             </div>
           </td> 

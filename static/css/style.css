@@ -31,20 +31,39 @@ body > .skiptranslate {
 .roomlist{display:flex; justify-content: left; flex-wrap: wrap; }
 .cardroom{display:none; margin-left: 16px; margin-right: 16px; margin-bottom: 32px;}
 .welcome{
+  text-align: end;
   color: whitesmoke; 
   height: 100%; font-size: 18px; 
   font-weight: bold; 
   color:yellow;
   white-space: nowrap;
-  margin-top: 5px;
+  margin-top: 9px;
   margin-right: 10px;
+  overflow: hidden;
+  width: 135px;
   }
 
-  .google{
- 
-    width:85px 
-  
-    }
+  /* .google{
+    margin-left:40px;
+    width:80px 
+    } */
+
+  .googlecontainer{
+    display: flex;
+    margin-top:11px;
+    overflow: hidden;
+    margin-right: 30px;
+    width: 100px;
+  }   
+
+  .language{
+    color: white;
+    margin-top: 11px;
+    font-size:18px;
+    font-weight: bold;
+    white-space: nowrap;
+    margin-right:4px;
+  }
 .welcometitle{font-weight: bold; color:rgb(255, 255, 255); text-align:left; }
 .welcometitle span{color:rgb(255, 120, 10)}
 .welcomebox{display:none; max-width: 400px; padding:10px; background-color:rgb(63, 63, 63, 0.9); color:white; margin-bottom: 20px;}
@@ -110,13 +129,13 @@ body > .skiptranslate {
 
 .nav-item .outer{
   position: relative;
-  margin-left: 10px;
+  margin-left: 20px;
   background:rgba(2,0,.6,1)
 }
 
 .nav-item .button{
   height:40px;
-  width:110px;
+  width:130px;
   border-radius: 50px;
 }
 
@@ -125,6 +144,7 @@ body > .skiptranslate {
   top:50%;
   left:50%;
   transform: translate(-50%, -50%);
+  white-space: nowrap;
 }
 
 .nav-item .outer a, .nav-item .outer button{
@@ -146,13 +166,13 @@ body > .skiptranslate {
 
 .nav-item .button a, .nav-item .button button{
   height: 30px;
-  width: 100px;
+  width: 120px;
   border-radius: 50px;
 }
 
 .nav-item .outer span{
   height: 40px;
-  width: 110px;
+  width: 130px;
   background: inherit;
 }
 
@@ -697,7 +717,32 @@ label{
   background-color: rgb(255, 176, 66);
 }
 
+/* course */
+.course_content{
+  display:flex;
+  flex-direction: column;
+  justify-content: start;
+}
 
+.course_detail{
+  background-color: white;
+  padding: 15px;
+  width: 100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items:start;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  color:#413f3f
+}
+.course_text{
+  padding-left: 20px;
+  padding-right: 20px;
+}
 
+.btn{
+  white-space: nowrap;
+}
 
 

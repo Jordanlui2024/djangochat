@@ -17,13 +17,13 @@
 {% for room in rooms %}
 <div class="box">
   <span>
-    <div class="title">  
+    <div class="title notranslate">  
       <img src="{{room.image.url}}" width="45" height="45" style="margin-right:10px">
     
       <div>{{room.name}}</div>
     </div> 
 
-    <p class="box-text" id="{{room.slug}}">Joiner: 0</p>
+    <p class="box-text" id="{{room.slug}}">chat member: 0</p>
     <a href="{% url 'chatroomPage' room.slug %}" class="btn blackcolor" style="width:100%">Join</a>
   </span>
 </div> 
@@ -33,7 +33,7 @@
 </div>
 {% endblock %}
 {% block animate%}
-<div class="bubbles" id="bubblespan">
+{% comment %} <div class="bubbles" id="bubblespan">
   <span style="--i:11;"></span>
   <span style="--i:12;"></span>
   <span style="--i:24;"></span>
@@ -89,7 +89,7 @@
   <span style="--i:30;"></span>
   <span style="--i:23;"></span>
   <span style="--i:5;"></span>
-</div>
+</div> {% endcomment %}
 {% endblock %}
 
 
@@ -98,7 +98,7 @@
 <script type="text/javascript">
  const userName = JSON.parse(document.getElementById('json-username').textContent);
  
- function screenResize(){
+ {% comment %} function screenResize(){
     console.log($(window).width());
     winwidth = $(window).width();
 
@@ -114,7 +114,7 @@
         $("#bubblespan").addClass("bubbles");
       }
     } 
- }
+ } {% endcomment %}
 
 
  $(function(){

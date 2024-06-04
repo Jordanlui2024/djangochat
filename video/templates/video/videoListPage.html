@@ -16,7 +16,7 @@
   <div class="videolist">
   {% for video in videoList %}
   <div class="card videocard" style="width: 18rem; color:black">
-    <a href="{% url 'videoPage' video.slug %}">
+    <a href="{% url 'videoPage' video.slug %}" class="notranslate">
     <div class="videologo">
     <img src="{{video.image.url}}" alt="image" width=60px/>
     </div> 

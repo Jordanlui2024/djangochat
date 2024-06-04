@@ -16,5 +16,6 @@ urlpatterns = [
     path('forum/', include('forum.urls')),
     path('contactus/', include('contactus.urls')),
     path('video/', include('video.urls')),
+    path('course/', include("course.urls")),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -50,15 +50,14 @@
   <div class="toptitle">
     <div class="topicback">
       <a href="{% url 'forumReplyPage' forum_id=forum_id page=page %}" id="backstack">  
-        <- {{request.user.username| capfirst}} Forum Reply
+        <- <span class="notranslate"> {{request.user.username| capfirst}} </span> Forum Reply
       </a>
     </div>
-  
   </div>  
   <table class="forumreply table">
     <tr class="updatereply_banner">
       <td class="topicname">
-        <div style="width:100%; text-align:right; padding-right:25px">Author : {{forumreply.0.forum.author.username|capfirst}}</div>
+        <div style="width:100%; text-align:right; padding-right:25px">Author : <span class="notranslate">{{forumreply.0.forum.author.username|capfirst}}</span></div>
         <div class="replytopic">Topic : {{forumreply.0.forum.title}}</div>
       </td>
     </tr>  
@@ -71,7 +70,7 @@
           <div class="forumdetail">
             <span>Replies : {{forumreply.0.forum.replies}}</span>
             <span>Views :{{forumreply.0.forum.views}}</span>
-            <span>Date : {{forumreply.0.forum.publication_date|date:"F d, Y"}}</span>
+            <span>Date : {{forumreply.0.forum.publication_date|date:"y-m-d(h:i a)"}}</span>
           </div>
         </div>
       </td> 
@@ -80,14 +79,14 @@
   <table class="forumreply table">  
     <tr>
       <td class="topicname">
-        <div style="width:100%; text-align:right; padding-right:25px">Reply : {{forumreply.0.author.username|capfirst}}</div>
+        <div style="width:100%; text-align:right; padding-right:25px">Reply :<span class="notranslate"> {{forumreply.0.author.username|capfirst}}</span></div>
       </td>
     </tr>  
     {% for reply in forumreply %}
     <tr style="height:80px; vertical-align:middle">
    
       <td>
-        <div class="post_date">Post Date : {{reply.publication_date|date:"F d, Y"}}</div>
+        <div class="post_date">Post Date : {{reply.publication_date|date:"y-m-d(h:i a)"}}</div>
          <div class="forumcontent">
           <div class="ck-content">
             {{reply.content|safe}}

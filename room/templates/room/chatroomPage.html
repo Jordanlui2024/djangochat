@@ -15,7 +15,7 @@
   
   <div class="card chatroom">
     
-    <div class="topic" >
+    <div class="topic notranslate" >
      
         <a href="{% url 'roomsPage' %}" class="backarrow">
         <i class="material-icons" style="color:black; font-size:35px; margin-top:5px">keyboard_backspace</i>
@@ -25,12 +25,12 @@
         <image src="{{room.image.url}}" style="width:45px; margin-right:10px"/>
         {{room.name}}
       </div>
-      
-      <div id="google_translate_element" class="google"></div>
+      <div></div>
+      {% comment %} <div id="google_translate_element" class="google"></div> {% endcomment %}
        
     </div>
 
-    <div class="chatcontent translate" id="chat-messages">
+    <div class="chatcontent" id="chat-messages">
       {% for m in messages %}
          {% if request.user.username == m.user.username %}
         <div class="iam_say">
@@ -69,7 +69,7 @@
 {{room.slug|json_script:"json-roomname"}}
 {{request.user.username|json_script:"json-username"}}
 
-<script type="text/javascript">
+{% comment %} <script type="text/javascript">
   function googleTranslateElementInit() {
     new google.translate.TranslateElement(
       {pageLanguage: 'en, zh-CN', 
@@ -80,7 +80,7 @@
   </script>
 
 
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> {% endcomment %}
 
 <script type="text/javascript">  
   const roomName = JSON.parse(document.getElementById('json-roomname').textContent);

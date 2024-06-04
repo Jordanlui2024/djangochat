@@ -43,7 +43,7 @@
   <div class="toptitle">
     <div class="topicback">
       <a href="{% url 'forumListPage' page=1 %}" id="backstack">  
-      <-{{request.user.username | capfirst}} Forum
+      <-<span class="notranslate">{{request.user.username | capfirst}}</span> Forum
       </a>
     </div>
   
@@ -67,7 +67,7 @@
                 <td scope="row" style="padding:15px 15px 15px 20px; min-height:400px; text-align:initial">
                  
                    <div class="forumlistcontent">
-                    <div style="float:right">Post Date: {{forum.publication_date | date:"F d, Y"}}</div>
+                    <div style="float:right">Post Date: {{forum.publication_date | date:"y-m-d(h:i a)"}}</div>
                     <div class="titleforum" id="title{{forum.id}}">{{forum.title}}</div>
                     <br/><br/>
                     <div class="ck-content">
