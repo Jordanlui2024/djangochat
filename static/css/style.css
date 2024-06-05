@@ -32,11 +32,11 @@ body > .skiptranslate {
 .cardroom{display:none; margin-left: 16px; margin-right: 16px; margin-bottom: 32px;}
 .welcome{
   position: fixed;
-  left: 20px;
-  margin-top: 40px;
-  background-color: rgb(254, 254, 247, 0.5);
+  right: 20px;
+  margin-top: 80px;
+  background-color: rgb(254, 254, 247, 0.8);
   font-weight: bold; 
-  color:rgb(234, 255, 128);
+  color:rgb(78, 79, 76);
   white-space: nowrap;
   z-index:100;
   padding:3px 10px 3px 10px;

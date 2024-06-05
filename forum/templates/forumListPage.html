@@ -12,8 +12,13 @@
 {% endblock  %}
 {% block content %}
 <div class="content">
-    <div class="toptitle">Forum</div>  
-
+    <div class="toptitle">Forum</div>
+    <form action="." method="GET">  
+    <div class="input-group mb-3">
+    <input type="text" name="search" class="form-control" placeholder="search" value="{{search|default_if_none:''}}"" aria-label="search" aria-describedby="button-addon2">
+    <button class="btn btn-primary"  id="button-addon2" style="width:120px" type="submit">Search</button> 
+    </div>
+    </form>
     <table class="table tableforum">
           <thead>
             <tr>

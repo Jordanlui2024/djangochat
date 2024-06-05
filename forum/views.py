@@ -6,7 +6,7 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def forumListPage(request, page=1):
-    # print(page)
+    search = ""
     listPerPage = 5
     if request.method == "POST":
         form = ForumForm(request.POST)
@@ -18,14 +18,25 @@ def forumListPage(request, page=1):
             return redirect('/forum/forumlist/1')
         else:    
             print(forum.error)
+
+    elif request.method == "GET":
+        search = request.GET.get("search")
+        if search is not None:
+           print(search)
+           forumdata = ForumModel.objects.filter(title__icontains=search).order_by("-publication_date")
+        else:
+           print(search)  
+           forumdata = ForumModel.objects.all().order_by("-publication_date")
+    else:
+        forumdata = ForumModel.objects.all().order_by("-publication_date")
+
     form = ForumForm()
-    forumdata = ForumModel.objects.all().order_by("-publication_date")
     paginator = Paginator(forumdata, listPerPage)
 
     forumlist = paginator.get_page(page)
     total_pages = paginator.num_pages
     
-    return render(request, "forumListPage.html", {"form": form, "forumlist": forumlist, "page":page, "total_pages":total_pages, "total_range":range(1, total_pages+1)})
+    return render(request, "forumListPage.html", {"form": form, "forumlist": forumlist, "page":page, "total_pages":total_pages, "total_range":range(1, total_pages+1), "search":search})
 
 def forumReplyPage(request, forum_id, page=1):
     forum = ForumModel.objects.get(id=forum_id)
