@@ -26,7 +26,7 @@
   <table class="forumreply table">
     <thead>
       <tr>
-        <th scope="col" colspan="2">
+        <th scope="col">
           <div class="replytopic">
           {{forum.title}}
           </div>
@@ -36,36 +36,46 @@
 
       <tbody>
         <tr style="height:80px; vertical-align:middle">
-          <td scope="row" class="username notranslate">{{forum.author.username|capfirst}}</td>
+          {% comment %} <td scope="row" class="username notranslate">{{forum.author.username|capfirst}}</td> {% endcomment %}
           <td>
              <div class="forumcontent">
-              <div class="ck-content">
+              <div class="forumdetail" style="justify-content:space-between">
+               <span> User: <span class="notranslate" style="font-size:16px">{{forum.author.username|capfirst}}</span></span>
+               <span>Post Date : {{forum.publication_date|date:"y-m-d h:i a"}}</span>
+              </div>
+               <div class="ck-content">
                 {{forum.content|safe}}
               </div>
               <div class="forumdetail">
                 <span>Replies : {{forum.replies}}</span>
                 <span>Views :{{forum.views}}</span>
-                <span>Date : {{forum.publication_date|date:"y-m-d(h:i a)"}}</span>
               </div>
             </div>
           </td> 
         </tr>
-        
+      </tbody>
+    </table>
+    
+    <table class="forumreply table">
+        <tbody>
         {% for reply in replylist %}
         <tr style="height:80px; vertical-align:middle">
-          <td scope="row" class="username user{{reply.author.pk}} notranslate">
-            {{reply.author.username|capfirst}}
-          </td>
+
           <td>
+
              <div class="forumcontent">
+               <div class="forumdetail" style="justify-content:space-between">
+                   {% comment %} <span>Like:{{reply.like}}</span>
+                   <span>Unlike:{{reply.unlike}}</span> {% endcomment %}
+                   <span class="user{{reply.author.pk}}">Reply:  <span class="notranslate" style="font-size:16px">{{reply.author.username|capfirst}}</span></span>
+                   <span>Post Date : {{reply.publication_date|date:"y-m-d h:i a"}}</span>
+               </div> 
+
+               <br/>
+
               <div class="ck-content">
                 {{reply.content|safe}}
               </div>
-              <div class="forumdetail">
-                  {% comment %} <span>Like:{{reply.like}}</span>
-                  <span>Unlike:{{reply.unlike}}</span> {% endcomment %}
-                  <span>Post Date : {{reply.publication_date|date:"y-m-d(h:i a)"}}</span>
-              </div> 
             </div>
           </td> 
         </tr>

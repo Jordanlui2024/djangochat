@@ -70,7 +70,7 @@
           <div class="forumdetail">
             <span>Replies : {{forumreply.0.forum.replies}}</span>
             <span>Views :{{forumreply.0.forum.views}}</span>
-            <span>Date : {{forumreply.0.forum.publication_date|date:"y-m-d(h:i a)"}}</span>
+            <span>Date : {{forumreply.0.forum.publication_date|date:"y-m-d h:i a"}}</span>
           </div>
         </div>
       </td> 
@@ -86,7 +86,7 @@
     <tr style="height:80px; vertical-align:middle">
    
       <td>
-        <div class="post_date">Post Date : {{reply.publication_date|date:"y-m-d(h:i a)"}}</div>
+        <div class="post_date">Post Date : {{reply.publication_date|date:"y-m-d h:i a"}}</div>
          <div class="forumcontent">
           <div class="ck-content">
             {{reply.content|safe}}
@@ -112,6 +112,8 @@
     {% csrf_token %}
     <input text="text" name="replyid_del" id="replyid" style="display:none"/>
   </form>
+  <br/>
+  <br/>
 
 {% if updateid %}  
 <div class="postforum">
@@ -135,11 +137,8 @@
 {% endif %}
 
 {% endif %}
-
-
 </div>
-
-
+<br/><br/>
 {% endblock%} 
 
 {% block script %}

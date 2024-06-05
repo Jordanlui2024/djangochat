@@ -55,6 +55,7 @@
         >
           <i class="material-icons notranslate" style="color: white">dehaze</i>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
           <div class="menu_item">
             <ul class="navbar-nav">
@@ -105,10 +106,7 @@
                   <span></span>
                   <span></span>
                 </div>
-              </li>
-            
-               
-             
+              </li>             
               {% comment %} <li class="nav-item">
                 <div class="outer button">
                   <a href="{% url 'homePage' %}">About</a>
@@ -119,29 +117,30 @@
             </ul>
           </div>
 
+ 
           <div class="logbutton">
-              <div class="language">Language : </div>  
-              <div class="googlecontainer">
-              <div id="google_translate_element"></div>
-              </div>
             {% if request.user.is_authenticated %}
-            <div class="welcome notranslate">
-              {{request.user.username | title}}
-            </div>
-            <form method="POST" action="{% url 'logoutPage' %}">
-              {% csrf_token %}
-                <button class="btn btn-primary logoutbtn">Logout</button>
-   
-            </form>
-          {% else %} 
+                <div class="welcome notranslate">
+                  Welcome: 
+                  {{request.user.username | title}}
+                </div>
+                <form method="POST" action="{% url 'logoutPage' %}">
+                  {% csrf_token %}
+                    <button class="btn btn-primary logoutbtn">Logout</button>
+                </form>
+            {% else %} 
               
-              <a href="{% url 'loginPage' %}" class="btn btn-primary loginbtn">Login</a>
-              <a href="{% url 'signupPage' %}" class="btn signupbtn">Signup</a>
+               <a href="{% url 'loginPage' %}" class="btn btn-primary loginbtn">Login</a>
+               <a href="{% url 'signupPage' %}" class="btn signupbtn">Signup</a>
 
-          {% endif %}
-          </div> 
-         
-        </div>
+            {% endif %}
+          
+          </div>
+                  <div class="googlecontainer">
+                    <div class="languagetxt">Language :</div>
+                    <div id="google_translate_element" style="width:100px"></div>      
+                  </div>
+        </div> 
       </div>
     </nav>
 
@@ -190,7 +189,7 @@
         new google.translate.TranslateElement(
           {pageLanguage: 'en', 
            includedLanguages:'en,zh-CN,zh-TW,th,ja,ko,it',
-          layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL}, 
+           layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL}, 
           'google_translate_element');
       }
     </script>

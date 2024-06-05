@@ -67,7 +67,7 @@
                 <td scope="row" style="padding:15px 15px 15px 20px; min-height:400px; text-align:initial">
                  
                    <div class="forumlistcontent">
-                    <div style="float:right">Post Date: {{forum.publication_date | date:"y-m-d(h:i a)"}}</div>
+                    <div style="float:right">Post Date: {{forum.publication_date | date:"y-m-d h:i a"}}</div>
                     <div class="titleforum" id="title{{forum.id}}">{{forum.title}}</div>
                     <br/><br/>
                     <div class="ck-content">
@@ -94,6 +94,8 @@
             <input text="text" name="forumid_del" id="forumid" style="display:none"/>
           </form>
 </div>
+<br/>
+<br/>
 {% if updateid %}  
 <div class="postforum">
 <div class="postrely">
@@ -108,6 +110,8 @@
   <a href={% url "articlePage"%} class="btn btn-secondary">Undo</a>
 </form>
 </div>
+<br/>
+<br/>
 <script>
 $(function(){
   $('html, body').animate({
@@ -137,7 +141,5 @@ $(function(){
   })
 
 })
-
-
 </script>
 {% endblock  %}

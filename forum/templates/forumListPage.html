@@ -17,7 +17,6 @@
     <table class="table tableforum">
           <thead>
             <tr>
-              <th scope="col" style="width:80px">User</th>
               <th scope="col">Topics</th>
             </tr>
           </thead>
@@ -25,15 +24,19 @@
             <tbody>
                {% for forum in forumlist %}
                 <tr style="height:90px; vertical-align:middle">
-                  <td scope="row" class="username user{{forum.author.pk}} notranslate">{{forum.author.username|capfirst }}</td>
+                
                   <td>
                     <a href={% url "forumReplyPage" forum_id=forum.id page=page %} class="forumlink">
+                      <div class="forumdetail" style="justify-content:space-between">
+                      <span class="user{{forum.author.pk}}">User : <span class="notranslate" style="font-size:16px">{{forum.author.username|capfirst }}</span></span>  
+                      <span>Post Date : {{forum.publication_date|date:"y-m-d h:i a"}}</span>
+                      </div>
+
                      <div class="forumlistcontent">
                       <div class="titleforum">{{forum.title}}</div>
                       <div class="forumdetail">
                         <span>Replies : {{forum.replies}}</span>
                         <span>Views :{{forum.views}}</span>
-                        <span>Date : {{forum.publication_date|date:"y-m-d(h:i a)"}}</span>
                       </div>
                     </div> 
                   </a>
@@ -86,7 +89,6 @@ $(function(){
     $(".listpost").show()
   }
 })  
-
 </script>
 {% else %}
 <a href={% url 'loginPage' %} class="btn btn-primary">Login for create new forum topic </a>
