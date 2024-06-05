@@ -120,10 +120,10 @@
  
           <div class="logbutton">
             {% if request.user.is_authenticated %}
-                <div class="welcome notranslate">
+                {% comment %} <div class="welcome notranslate">
                   Welcome: 
                   {{request.user.username | title}}
-                </div>
+                </div> {% endcomment %}
                 <form method="POST" action="{% url 'logoutPage' %}">
                   {% csrf_token %}
                     <button class="btn btn-primary logoutbtn">Logout</button>
@@ -144,9 +144,13 @@
       </div>
     </nav>
 
+    <div class="welcome notranslate">
+      Welcome: 
+      {{request.user.username | title}}
+    </div>
     <div class="container">
  
-      
+
       
       {% if request.user.is_authenticated %}
       <div class="welcome-user">
