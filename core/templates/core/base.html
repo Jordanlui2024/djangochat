@@ -51,8 +51,7 @@
           data-bs-target="#navbarNav"
           aria-controls="navbarNav"
           aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+          aria-label="Toggle navigation">
           <i class="material-icons notranslate" style="color: white">dehaze</i>
         </button>
 
@@ -115,15 +114,11 @@
                 </div>
               </li> {% endcomment %}
             </ul>
-          </div>
+        </div>
 
  
           <div class="logbutton">
             {% if request.user.is_authenticated %}
-                {% comment %} <div class="welcome notranslate">
-                  Welcome: 
-                  {{request.user.username | title}}
-                </div> {% endcomment %}
                 <form method="POST" action="{% url 'logoutPage' %}">
                   {% csrf_token %}
                     <button class="btn btn-primary logoutbtn">Logout</button>
@@ -148,11 +143,9 @@
       Welcome: 
       {{request.user.username | title}}
     </div>
-    <div class="container">
-    {% endif %}  
- 
-
-      
+    {% endif %} 
+     
+    <div class="container"> 
       {% if request.user.is_authenticated %}
       <div class="welcome-user">
         <span id="joiners"></span>
