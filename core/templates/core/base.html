@@ -9,7 +9,7 @@
       type="image/x-icon"
       href="{% static 'images/logo.ico' %}"
     />
-    <title class="notranslate">{% block title %}home{% endblock %}</title>
+    <title class="notranslate toptitle">{% block title %}{% endblock %}</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -82,6 +82,14 @@
                    <span></span>
                  </div>
                </li>
+
+               <li class="nav-item">
+                <div class="outer button">
+                  <a href="{% url 'ebookListPage' %}">Ebook</a>
+                  <span></span>
+                  <span></span>
+                </div>
+              </li>
                {% endif %}
               <li class="nav-item">
                 <div class="outer button">
@@ -92,13 +100,7 @@
                   <span></span>
                 </div>
               </li>
-              <li class="nav-item">
-                <div class="outer button">
-                  <a href="{% url 'courseListPage' %}">Ebook</a>
-                  <span></span>
-                  <span></span>
-                </div>
-              </li>
+ 
               <li class="nav-item">
                 <div class="outer button">
                   <a href="{% url 'contactusPage' %}">Contact Us</a>
