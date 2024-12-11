@@ -3,6 +3,7 @@ from .forms import ForumForm, RelyForm
 from .models import ForumModel, ReplyModel
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.views.decorators.cache import cache_page
 
 # Create your views here.
 def forumListPage(request, page=1):
@@ -64,12 +65,12 @@ def forumReplyPage(request, forum_id, page=1):
 
 
 
-@login_required
+@cache_page(60 * 15)  # 缓存视图15分钟
 def forumArticlePage(request):
     author_id = request.user.pk
     updateid = 0
     if request.method == "POST":
-        if 'forumid_del' in  request.POST:
+        if 'forumid_del' in request.POST:
             delid = request.POST['forumid_del']
             del_rec = ForumModel.objects.get(id=delid)
             del_rec.delete()
@@ -84,7 +85,7 @@ def forumArticlePage(request):
                 post_data = request.POST.copy()
                 post_data.pop('id', None)
                 editid = request.POST.get("id", None)
-                forumdata = ForumModel.objects.get(pk=editid)   
+                forumdata = ForumModel.objects.get(pk=editid)
                 editform = ForumForm(post_data, instance=forumdata)
                 editform.save()
                 form = ForumForm()
@@ -94,12 +95,12 @@ def forumArticlePage(request):
                     forum = form.save(commit=False)
                     forum.author = request.user
                     forum.save()
-                form = ForumForm()                   
+                form = ForumForm()
     else:
         form = ForumForm()
-                
-    forumlist = ForumModel.objects.filter(author__id=author_id).order_by("-publication_date")
-    return render(request, "forumArticlePage.html", {"form": form, "forumlist": forumlist, "updateid":updateid})
+
+    forumlist = ForumModel.objects.filter(author__id=author_id).select_related('author').order_by("-publication_date")
+    return render(request, "forumArticlePage.html", {"form": form, "forumlist": forumlist, "updateid": updateid})
 
 
 @login_required
