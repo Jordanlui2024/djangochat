@@ -6,8 +6,8 @@ import os
 import time
 
 class DjangoService(win32serviceutil.ServiceFramework):
-    _svc_name_ = "DjangoChatService2"
-    _svc_display_name_ = "Django Chat Service2"
+    _svc_name_ = "DjangoChatService32668"
+    _svc_display_name_ = "Django Chat Service"
     _svc_description_ = "A service to run Django chat application."
 
     def __init__(self, args):
@@ -28,10 +28,10 @@ class DjangoService(win32serviceutil.ServiceFramework):
 
     def main(self):
         try:
-            os.chdir(r"C:\HOMEPAGE\django_chat\djangochat")  # 確保路徑正確
+            os.chdir(r"C:\HOMEPAGE\django_chat\djangochat")
             servicemanager.LogInfoMsg("Changed directory to Django project.")
             time.sleep(5)  # 添加延遲
-            os.system(r"C:\HOMEPAGE\django_chat\venv-djangochat\Scripts\python.exe manage.py runserver 0.0.0.0:3268")
+            os.system(r"C:\HOMEPAGE\django_chat\venv-djangochat\Scripts\python.exe manage.py runserver 0.0.0.0:32668")
         except Exception as e:
             servicemanager.LogErrorMsg(f"Error running server: {e}")
 

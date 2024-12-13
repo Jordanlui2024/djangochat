@@ -15,10 +15,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'your-secret-key'
+SECRET_KEY = 'C{wx.g^a,CN9''Qe}1w&111-vs5*"6Fu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['lwh2024.us.kg', '119.247.125.136', '127.0.0.1']
 
@@ -254,3 +255,11 @@ CACHES = {
         'LOCATION': 'unique-snowflake',
     }
 }
+
+# 確保CSRF_TRUSTED_ORIGINS包含正確的來源
+CSRF_TRUSTED_ORIGINS = [
+    'https://lwh2024.us.kg:2096',
+    'https://lwh2024.us.kg',
+    'http://119.247.125.136',
+    'http://127.0.0.1'
+]
